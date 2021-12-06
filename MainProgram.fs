@@ -5,20 +5,21 @@ let rec mainiter codeSum =
     Console.WriteLine("Select day to run calculation for:")
     let selection = Console.ReadLine()
     Console.Write("\n")
+    let projectDir = System.IO.Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + "\\InputData"
 
     let code = match selection with
                 | "1" -> Console.WriteLine("Day " + selection + " Results:")
-                         Day1.mainDay1
+                         Day1.mainDay1 projectDir
                 | "2" -> Console.WriteLine("Day " + selection + " Results:")
-                         Day2.mainDay2
+                         Day2.mainDay2 projectDir
                 | "3" -> Console.WriteLine("Day " + selection + " Results:")
-                         Day3.mainDay3
+                         Day3.mainDay3 projectDir
                 | "4" -> Console.WriteLine("Day " + selection + " Results:")
-                         Day4.mainDay4
+                         Day4.mainDay4 projectDir
                 | "5" -> Console.WriteLine("Day " + selection + " Results:")
-                         Day5.mainDay5
+                         Day5.mainDay5 projectDir
                 | "6" -> Console.WriteLine("Day " + selection + " Results:")
-                         Day6.mainDay6
+                         Day6.mainDay6 projectDir
 
                 | _ -> Console.WriteLine("Unrecognised input code.")
                        -1

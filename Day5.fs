@@ -38,8 +38,8 @@ let lineParse (lineString: string) =
     {dir = direction; maxValue = valueMax; line = directedLine}
 
 //Get the input data and parse it into an array of lineDatas   
-let day5input =
-    let fileStream = new StreamReader("C:\Documents\Advent of Code\Day5Input.txt")
+let day5input projectDir =
+    let fileStream = new StreamReader(projectDir + "\Day5Input.txt")
     fileStream.ReadToEnd().Split([|"\n"|], StringSplitOptions.None)
     |> Array.map (fun x -> lineParse x)
 
@@ -64,8 +64,8 @@ let updateMap map line =
 let countPoints map value =
     Seq.fold (fun s x -> s + if x >= value then 1 else 0) 0 (Seq.cast<int> map)
 
-let mainDay5 =
-    let sourceData = day5input
+let mainDay5 projectDir =
+    let sourceData = day5input projectDir
     let maxDim = Array.fold (fun s x -> max s x.maxValue) 0 sourceData
     let ventMap = Array.fold (fun map line -> updateMap map line) (Array2D.create maxDim maxDim 0) sourceData
 //    let ventMap2 = Array2D.init maxDim maxDim (fun i j -> Array.fold (fun s x -> if isOnLine i j x then s + 1 else s) 0 sourceData)

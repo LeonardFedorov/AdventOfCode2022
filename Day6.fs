@@ -9,8 +9,8 @@ let fishStateCount = 9
 let arrayCount array n =
     Array.fold (fun s x -> if x = n then s + 1L else s) 0L array
 
-let getText =
-    let fileStream = new StreamReader("C:\Documents\Advent Of Code\Day6Input.txt")
+let getText projectDir =
+    let fileStream = new StreamReader(projectDir + "\Day6Input.txt")
     fileStream.ReadToEnd().Split(',')
     |> Array.map (fun a -> Int64.Parse(a))
 
@@ -28,11 +28,10 @@ let rec fishSim fishArray iters =
     else
         fishSim (fishUpdate fishArray) (iters - 1)
 
-let mainDay6 =
-    let rawSourceData = getText
+let mainDay6 projectDir =
+    let rawSourceData = getText projectDir
     let sourceData = Array.init fishStateCount (fun i -> arrayCount rawSourceData (int64(i)))
     
-
     Console.WriteLine("Part 1: " + (fishSim sourceData 80).ToString() + " fish" )
     Console.WriteLine("Part 2: " + (fishSim sourceData 500).ToString() + " fish")
     6

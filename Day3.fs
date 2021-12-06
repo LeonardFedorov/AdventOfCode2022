@@ -7,8 +7,8 @@ open System.IO
 //COMMON
 
 //Read the input in from the source file
-let getText =
-    let fileStream = new StreamReader("C:\Documents\Advent Of Code\Day3Input.txt")
+let getText projectDir =
+    let fileStream = new StreamReader(projectDir + "\Day3Input.txt")
     fileStream.ReadToEnd().Split('\n')
 
 //Idea courtesy of Hayes - original was much jankier and involved doing a count of 1s compared against
@@ -56,8 +56,8 @@ let part2comp filterFunc sourceData (commonChars: int[]) =
     |> Array.map (fun x -> int x - int '0')
     |> binToDec
 
-let mainDay3 =
-    let sourceData = getText
+let mainDay3 projectDir =
+    let sourceData = getText projectDir
     let commonChars = commonChar (List.ofArray sourceData)
 
     let gamma = getGamma commonChars

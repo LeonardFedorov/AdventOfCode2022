@@ -4,8 +4,8 @@ module Day1
 open System
 open System.IO
 
-let getText =
-    let fileStream = new StreamReader("C:\Documents\Advent Of Code\Day1Input.txt")
+let getText projectDir =
+    let fileStream = new StreamReader(projectDir + "\\Day1Input.txt")
     fileStream.ReadToEnd().Split('\n')
     |> Array.map (fun a -> Int32.Parse(a))
 
@@ -16,8 +16,8 @@ let part12 n (sourceArray: int[]) =
                                                 then 1 else 0)
     |> Seq.sum
 
-let mainDay1 =
-    let sourceData = getText
+let mainDay1 projectDir =
+    let sourceData = getText projectDir
     Console.WriteLine("Part 1: " + (part12 1 sourceData).ToString() )
     Console.WriteLine("Part 2: " + (part12 3 sourceData).ToString() )
     1

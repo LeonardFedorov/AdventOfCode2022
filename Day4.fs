@@ -12,8 +12,8 @@ let parseArray (arrayString: string) =
 
 //Function to get and parse the problem input. 
 //The result is a pair whose first element is the called numbers, and the second is a list of 2d arrays (the bingo cards)
-let day4input =
-    let fileStream = new StreamReader("C:\Documents\Advent Of Code\Day4Input.txt")
+let day4input projectDir =
+    let fileStream = new StreamReader(projectDir + "\Day4Input.txt")
     //Do a split on double newlines to separate out the grids from each other first
     let stringRead = fileStream.ReadToEnd().Split([|"\r\n\r\n"|], StringSplitOptions.None)
 
@@ -56,8 +56,8 @@ let timeToWin (grid: int[,]) (theNumbers: int[]) =
 let updateAccumulator (accTime, accScore) (newTime, newScore) (compare: int -> int -> bool) =
     if compare newTime accTime then (newTime, newScore) else (accTime, accScore)
 
-let mainDay4 =
-    let sourceData = day4input
+let mainDay4 projectDir =
+    let sourceData = day4input projectDir
     let result = Array.init (snd sourceData).Length (fun i -> timeToWin (snd sourceData).[i] (fst sourceData))
                  
     let part1 = Array.fold (fun acc newR -> updateAccumulator acc newR (fun x y -> x < y)) ((fst sourceData).Length + 1, 0) result
