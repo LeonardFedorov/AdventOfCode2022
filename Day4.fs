@@ -39,7 +39,6 @@ let hasWon (boolGrid: bool[,]) gridRef =
 let scoreBoard grid liveGrid =
     Seq.fold2 (fun s value bool -> if bool = false then s + value else s) 0 (Seq.cast<int> grid) (Seq.cast<bool> liveGrid)
 
-
 let rec timeToWinIter grid (theNumbers: int[]) (liveGrid: bool[,]) step =
     //If the number was not found, no need to perform any updates or checks so proceed immediately to next loop
     let gridRef = ArrayFind2D grid theNumbers.[step]

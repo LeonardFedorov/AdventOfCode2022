@@ -2,7 +2,7 @@
 
 let rec mainiter codeSum =
 
-    Console.WriteLine("Select day to run calculation for:")
+    Console.WriteLine("\nSelect day to run calculation for:")
     let selection = Console.ReadLine()
     Console.Write("\n")
     let projectDir = System.IO.Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + "\\InputData"
@@ -35,6 +35,6 @@ let main argv =
     
     Console.WriteLine("#####################")
     Console.WriteLine("#Advent Of Code 2021#")
-    Console.WriteLine("#####################\n")
+    Console.WriteLine("#####################")
 
     mainiter 0

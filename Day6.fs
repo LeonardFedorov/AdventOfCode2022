@@ -22,7 +22,6 @@ let fishUpdate (fishArray: int64[]) =
                                 )
 
 let rec fishSim fishArray iters =
-
     if iters = 0 then
         Array.sum fishArray
     else
