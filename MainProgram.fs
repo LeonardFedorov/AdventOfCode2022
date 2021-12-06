@@ -18,6 +18,9 @@ let main argv =
              Day4.mainDay4
     | "5" -> Console.WriteLine("Day " + selection + " Results:")
              Day5.mainDay5
+    | "6" -> Console.WriteLine("Day " + selection + " Results:")
+             Day6.mainDay6
+
     | _ -> Console.WriteLine("Unrecognised input code.")
            -1
 
