@@ -6,18 +6,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="Day Template.fs" />
+    <Compile Include="Days 1 to 10\Day1.fs" />
+    <Compile Include="Days 1 to 10\Day2.fs" />
+    <Compile Include="Days 1 to 10\Day3.fs" />
+    <Compile Include="Days 1 to 10\Day4.fs" />
+    <Compile Include="Days 1 to 10\Day5.fs" />
+    <Compile Include="Days 1 to 10\Day6.fs" />
+    <Compile Include="Days 1 to 10\Day7.fs" />
     <Content Include="InputData\Day1Input.txt" />
     <Content Include="InputData\Day2Input.txt" />
     <Content Include="InputData\Day3Input.txt" />
     <Content Include="InputData\Day4Input.txt" />
     <Content Include="InputData\Day5Input.txt" />
     <Content Include="InputData\Day6Input.txt" />
-    <Compile Include="Day1.fs" />
-    <Compile Include="Day2.fs" />
-    <Compile Include="Day3.fs" />
-    <Compile Include="Day4.fs" />
-    <Compile Include="Day5.fs" />
-    <Compile Include="Day6.fs" />
+    <Content Include="InputData\Day7Input.txt" />
     <Compile Include="MainProgram.fs" />
   </ItemGroup>
 

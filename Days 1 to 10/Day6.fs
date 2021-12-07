@@ -32,5 +32,5 @@ let mainDay6 projectDir =
     let sourceData = Array.init fishStateCount (fun i -> arrayCount rawSourceData (int64(i)))
     
     Console.WriteLine("Part 1: " + (fishSim sourceData 80).ToString() + " fish" )
-    Console.WriteLine("Part 2: " + (fishSim sourceData 500).ToString() + " fish")
+    Console.WriteLine("Part 2: " + (fishSim sourceData 256).ToString() + " fish")
     6
