@@ -32,7 +32,7 @@ This puzzle had some finesse in getting the update step formulae correct and tra
 <details>
 	<summary>Day 3</summary>
 
-The first puzzle with some weight to it. Part 1 was fairly straight forward but part 2 required extra work around building the iterator. An optimisation here for part 2 would be to split out the process of evaluating the most common char in a given column from the function that calcualtes it for all columns as this since part 2 only uses them one at a time and they need recomputing each time anyway. However, given the execution speed is already unnoticeable with the full input set, this has not been done.
+The first puzzle with some weight to it. Part 1 was fairly straight forward but part 2 required extra work around building the iterator. An optimisation here for part 2 would be to split out the process of evaluating the most common char in a given column from the function that calculates it for all columns as this since part 2 only uses them one at a time and they need recomputing each time anyway. However, given the execution speed is already unnoticeable with the full input set, this has not been done.
 
 </details>
 
@@ -73,7 +73,7 @@ Day 7 was an easy one. The zero sum nature of the shift totals in the first part
 <details>
 	<summary>Day 8</summary>
 
-Day 8 was the hardest so far, eding out even Day 3. The part 1 of the puzzle was very straight forward, but the looming requirement of part 2 was evident from the description of the data set. By writing out a grid of which numbers which letters appeared in, I found a sequence of deductions using the occurence pattern of the characters in the strings alone to arrive at the answer (and thereby avoid needing to track which numbers are associated with which strings as these are deduced). 
+Day 8 was the hardest so far, eeking out even Day 3. The part 1 of the puzzle was very straight forward, but the looming requirement of part 2 was evident from the description of the data set. By writing out a grid of which numbers which letters appeared in, I found a sequence of deductions using the occurence pattern of the characters in the strings alone to arrive at the answer (and thereby avoid needing to track which numbers are associated with which strings as these are deduced). 
 
 After determining the character decoding, the answer strings are then decoded and converted to a single base 10 number for aggregation at output. Some optimisation would be possible as there are searches into the existant mapping array when the required information had existed in the past and could be passed forward, but I think on balance the cost of the map search is minimal compared to the clutter of passing around the extra information.
 
