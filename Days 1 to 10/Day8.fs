@@ -4,6 +4,8 @@ module Day8
 open System
 open System.IO
 
+let numChars = 7
+
 //Each row is a string array. Entries 0-9 inclusive contain the screen output, 10 contains the delimiter
 //and 11-14 inclusive contain the output values
 let getText projectDir =
@@ -25,6 +27,10 @@ let count1478s (sequence: string[]) =
 
 
 //Part 2
+
+//Short hand so equality tests don't need to be written in lambda
+let eq x y = x = y
+let eqStrLength x (y:string) = x = y.Length
 
 //Function to map 0 based array indicies to letters starting from a
 let indexToChar index = char (index + int 'a')
@@ -54,9 +60,52 @@ let translateString (numberString:string) charMap =
     new String(Array.sort mappedString)
     |> convertString
 
-let getCharMapping (clueNumbers: string[]) =
+//Find the missing character in the 6 char words
+let findMissingChar (word:string) =
+    Array.init numChars (fun i -> word.Contains (indexToChar i))
+    |> Array.findIndex (eq false)
+    |> indexToChar
+
+let findA (clueNumbers: string[]) charMap =
+    let one = Array.find (eqStrLength 2) clueNumbers
+    let seven = Array.find (eqStrLength 3) clueNumbers
+
+    let aChar = Array.find (fun x -> not (String.exists (eq x) one )) (seven.ToCharArray())
+    (aChar , 'a') :: charMap
+
+let getUniqueCountChars (charCounts: int[]) charMap =  
+    let eMap = ((indexToChar ( Array.findIndex (eq 4) charCounts)) , 'e')
+    let bMap = ((indexToChar ( Array.findIndex (eq 6) charCounts)) , 'b')
+    let fMap = ((indexToChar ( Array.findIndex (eq 9) charCounts)) , 'f')
+    fMap :: bMap :: eMap :: charMap
+
+let findC (charCounts: int[]) charMap =
+    let cIndex = Array.mapi (fun i x -> (x = 8) && (not (indexToChar i = (unMapChar 'a' charMap) ))) charCounts
+                |> Array.findIndex (eq true)
+    ( (indexToChar cIndex ), 'c') :: charMap
+
+let findD (clueNumbers: string[]) charMap =
+    
+    let missingChars = Array.map (fun x -> findMissingChar x) (Array.filter (eqStrLength (numChars - 1)) clueNumbers)
+    let dImage = Array.map (fun x -> mapChar x charMap) missingChars //'0' will tell us which entry is not mapped yet
+                 |> Array.findIndex (eq '0')
+
+    ((missingChars.[dImage]), 'd') :: charMap
+
+let findG charMap =
+    let gChar = Array.init numChars (fun i -> mapChar (indexToChar i) charMap)
+                |> Array.findIndex (eq '0')
+                |> indexToChar
+    (gChar, 'g') :: charMap
+
+let getCharMapping (clueNumbers: string[]) (charCounts: int[]) =
     
     List.empty<(char * char)>
+    |> findA clueNumbers
+    |> getUniqueCountChars charCounts
+    |> findC charCounts
+    |> findD clueNumbers
+    |> findG 
 
 let part2Evaluator (sourceLine: string[]) =
     //Slice up the source data into more useful pieces
@@ -65,13 +114,12 @@ let part2Evaluator (sourceLine: string[]) =
     let answerNumbers = Array.init (sourceLine.Length - delim - 1) (fun i -> sourceLine.[i + delim + 1])
 
     //Count how many times each char appears in the data as this is key to the deduction process
-    let charCounts = Array.init 7 (fun i -> Array.fold (fun count string -> if String.exists (fun c -> c = (indexToChar i)) string then count + 1 else count) 0 clueNumbers)
-    let charMap = getCharMapping clueNumbers
+    let charCounts = Array.init numChars (fun i -> Array.fold (fun count string -> if String.exists (eq (indexToChar i)) string then count + 1 else count) 0 clueNumbers)
+    let charMap = getCharMapping clueNumbers charCounts
 
     //Use the char map to translate the digits, and then convert to a single base 10 number
     Array.map (fun x -> translateString x charMap) answerNumbers
     |> Array.fold (fun s x-> 10*s + x) 0
-
 
 //Entry point
 let main projectDir =
@@ -81,20 +129,12 @@ let main projectDir =
     let part2 = Array.sum (Array.map (fun x -> part2Evaluator x) sourceData)
 
     Console.WriteLine("Part 1: " + part1.ToString() )
-    Console.WriteLine("Part 2: Not Implemented."  )
+    Console.WriteLine("Part 2: " + part2.ToString()  )
     8
 
-//Deduction steps (v1):
-//First, identify the 1,4,7 and 8 based on their unique lengths
-//Then, the character that appears in the 7 but not the 1 must be the true a                                            :a
-//Then, look for the character that appears in all bar 1, this the true f, and the string it appears in is the 2        :f
-//Comparing this character with the 1 allows the true c to be deduced                                                   :c
-//The character in the 4 which is not the true f, and is not in common with the 2 is the true b                         :b
-//The true e is the only character present in only 3 numbers                                                            :e
-
-//Deduction steps (v2):
-//Count how many times each char appears. 4, 6 and 9 occurences are the true e, b, f                                    :b,e,f
+//Deduction steps:
 //Character in 7 but not 1 is the a                                                                                     :a
+//Count how many times each char appears. 4, 6 and 9 occurences are the true e, b, f                                    :b,e,f
 //The character that is not the a but occurs 8 times in the c                                                           :c
 //The character that is missing from a string that is missing one and is not the c or e is the d                        :d
 //The remaining character is the g                                                                                      :g

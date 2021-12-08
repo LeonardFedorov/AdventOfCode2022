@@ -69,3 +69,12 @@ In part 2, the number became so large it became necessary to move all the calcul
 Day 7 was an easy one. The zero sum nature of the shift totals in the first part made it clear to see by an informal inductive argument that the median of the data set would always be the answer. The second part was not quite so receptive to analytic examination. It appears that answer is near the mean, but it's not exact. Given the brute force computation (accelerated by using the triangle number formula to get the fuel consumption) executes imperceptibly fast, I didn't bother to examine in more detail.
 
 </details>
+
+<details>
+	<summary>Day 8</summary>
+
+Day 8 was the hardest so far, eding out even Day 3. The part 1 of the puzzle was very straight forward, but the looming requirement of part 2 was evident from the description of the data set. By writing out a grid of which numbers which letters appeared in, I found a sequence of deductions using the occurence pattern of the characters in the strings alone to arrive at the answer (and thereby avoid needing to track which numbers are associated with which strings as these are deduced). 
+
+After determining the character decoding, the answer strings are then decoded and converted to a single base 10 number for aggregation at output. Some optimisation would be possible as there are searches into the existant mapping array when the required information had existed in the past and could be passed forward, but I think on balance the cost of the map search is minimal compared to the clutter of passing around the extra information.
+
+</details>
