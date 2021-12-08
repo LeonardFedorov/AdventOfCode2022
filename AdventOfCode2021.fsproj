@@ -14,6 +14,7 @@
     <Compile Include="Days 1 to 10\Day5.fs" />
     <Compile Include="Days 1 to 10\Day6.fs" />
     <Compile Include="Days 1 to 10\Day7.fs" />
+    <Compile Include="Days 1 to 10\Day8.fs" />
     <Content Include="InputData\Day1Input.txt" />
     <Content Include="InputData\Day2Input.txt" />
     <Content Include="InputData\Day3Input.txt" />
@@ -21,6 +22,7 @@
     <Content Include="InputData\Day5Input.txt" />
     <Content Include="InputData\Day6Input.txt" />
     <Content Include="InputData\Day7Input.txt" />
+    <Content Include="InputData\Day8Input.txt" />
     <Compile Include="MainProgram.fs" />
   </ItemGroup>
 
