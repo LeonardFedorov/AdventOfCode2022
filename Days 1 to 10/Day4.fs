@@ -6,7 +6,7 @@ open System.IO
 
 //Function to transform the string of a bingo card into an int typed 2d array
 let parseArray (arrayString: string) =
-    let arrayOfArrays = arrayString.Split('\n')
+    let arrayOfArrays = arrayString.Split([|"\r\n"|], StringSplitOptions.None)
                         |> Array.map (fun x -> x.Split([|" "|], StringSplitOptions.RemoveEmptyEntries))
     Array2D.init arrayOfArrays.Length arrayOfArrays.[0].Length (fun i j -> Int32.Parse(arrayOfArrays.[i].[j]))
 
@@ -55,7 +55,9 @@ let timeToWin (grid: int[,]) (theNumbers: int[]) =
 let updateAccumulator (accTime, accScore) (newTime, newScore) (compare: int -> int -> bool) =
     if compare newTime accTime then (newTime, newScore) else (accTime, accScore)
 
-let mainDay4 projectDir =
+
+//Entry point
+let main projectDir =
     let sourceData = day4input projectDir
     let result = Array.init (snd sourceData).Length (fun i -> timeToWin (snd sourceData).[i] (fst sourceData))
                  

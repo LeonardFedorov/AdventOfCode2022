@@ -9,7 +9,7 @@ open System.IO
 //Read the input in from the source file
 let getText projectDir =
     let fileStream = new StreamReader(projectDir + "\\Day2Input.txt")
-    fileStream.ReadToEnd().Split('\n')
+    fileStream.ReadToEnd().Split([|"\r\n"|], StringSplitOptions.None)
 
 //PART 1
 
@@ -48,7 +48,9 @@ let part2 sourceData =
     Array.fold (fun (f,d,a) x -> (p2posUpdate (f,d,a) x)) (0,0,0) sourceData
     |> finalAnswer 
 
-let mainDay2 projectDir =
+
+//Entry point
+let main projectDir =
     let sourceData = getText projectDir
 
     Console.WriteLine("Part 1: " + (part1 sourceData).ToString())

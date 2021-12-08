@@ -9,19 +9,21 @@ let rec mainiter codeSum =
 
     let code = match selection with
                 | "1" -> Console.WriteLine("Day " + selection + " Results:")
-                         Day1.mainDay1 projectDir
+                         Day1.main projectDir
                 | "2" -> Console.WriteLine("Day " + selection + " Results:")
-                         Day2.mainDay2 projectDir
+                         Day2.main projectDir
                 | "3" -> Console.WriteLine("Day " + selection + " Results:")
-                         Day3.mainDay3 projectDir
+                         Day3.main projectDir
                 | "4" -> Console.WriteLine("Day " + selection + " Results:")
-                         Day4.mainDay4 projectDir
+                         Day4.main projectDir
                 | "5" -> Console.WriteLine("Day " + selection + " Results:")
-                         Day5.mainDay5 projectDir
+                         Day5.main projectDir
                 | "6" -> Console.WriteLine("Day " + selection + " Results:")
-                         Day6.mainDay6 projectDir
+                         Day6.main projectDir
                 | "7" -> Console.WriteLine("Day " + selection + " Results:")
-                         Day7.mainDay7 projectDir
+                         Day7.main projectDir
+                | "8" -> Console.WriteLine("Day " + selection + " Results:")
+                         Day8.main projectDir
 
                 | _ -> Console.WriteLine("Unrecognised input code.")
                        -1

@@ -40,7 +40,7 @@ let lineParse (lineString: string) =
 //Get the input data and parse it into an array of lineDatas   
 let day5input projectDir =
     let fileStream = new StreamReader(projectDir + "\Day5Input.txt")
-    fileStream.ReadToEnd().Split([|"\n"|], StringSplitOptions.None)
+    fileStream.ReadToEnd().Split([|"\r\n"|], StringSplitOptions.None)
     |> Array.map (fun x -> lineParse x)
 
 //test if the point (i,j) lies on the line specified
@@ -64,13 +64,15 @@ let updateMap map line =
 let countPoints map value =
     Seq.fold (fun s x -> s + if x >= value then 1 else 0) 0 (Seq.cast<int> map)
 
-let mainDay5 projectDir =
+
+//Entry point
+let main projectDir =
     let sourceData = day5input projectDir
     let maxDim = Array.fold (fun s x -> max s x.maxValue) 0 sourceData
     let ventMap = Array.fold (fun map line -> updateMap map line) (Array2D.create maxDim maxDim 0) sourceData
 //    let ventMap2 = Array2D.init maxDim maxDim (fun i j -> Array.fold (fun s x -> if isOnLine i j x then s + 1 else s) 0 sourceData)
     
     Console.WriteLine("Maximum coordinate found: " + maxDim.ToString())
-    Console.WriteLine("Count of 2+ locations: " + (countPoints ventMap 2).ToString())
+    Console.WriteLine("Count of 2+ locations (part 2 only): " + (countPoints ventMap 2).ToString())
 
     5 //expected integer return code

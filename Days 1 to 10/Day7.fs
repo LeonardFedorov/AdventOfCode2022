@@ -16,7 +16,8 @@ let sumOfDistances numberArray n =
 let sumOfTriangleDistances numberArray n =
     Array.fold(fun s x -> s + abs(x-n)*(abs(x-n)+1)/2) 0 numberArray
 
-let mainDay7 projectDir =
+//Entry point
+let main projectDir =
     let sourceData = getText projectDir
     let median = sourceData.[(sourceData.Length + 1)/2 - 1]
     let part2 = Array.init (Array.max sourceData) (fun i -> sumOfTriangleDistances sourceData i)

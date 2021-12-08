@@ -27,7 +27,8 @@ let rec fishSim fishArray iters =
     else
         fishSim (fishUpdate fishArray) (iters - 1)
 
-let mainDay6 projectDir =
+//Entry point
+let main projectDir =
     let rawSourceData = getText projectDir
     let sourceData = Array.init fishStateCount (fun i -> arrayCount rawSourceData (int64(i)))
     

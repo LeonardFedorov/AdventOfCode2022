@@ -4,14 +4,20 @@ module DayX
 open System
 open System.IO
 
+//Common
 let getText projectDir =
     let fileStream = new StreamReader(projectDir + "\\DayXInput.txt")
     fileStream.ReadToEnd()
  
+ //Part 1
 
-let mainDayX projectDir =
-    let sourceData = getText projectDir
 
-    Console.WriteLine("Part 1: "  )
-    Console.WriteLine("Part 2: "  )
-    1
+ //Part 2
+
+
+ //Entry point
+let main projectDir =
+
+    Console.WriteLine("Part 1: Not Implemented."  )
+    Console.WriteLine("Part 2: Not Implemented."  )
+    -1

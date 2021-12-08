@@ -9,7 +9,7 @@ open System.IO
 //Read the input in from the source file
 let getText projectDir =
     let fileStream = new StreamReader(projectDir + "\Day3Input.txt")
-    fileStream.ReadToEnd().Split('\n')
+    fileStream.ReadToEnd().Split([|"\r\n"|], StringSplitOptions.None)
 
 //Idea courtesy of Hayes - original was much jankier and involved doing a count of 1s compared against
 //n/2 which involved some rounding trickiness to get right
@@ -56,7 +56,9 @@ let part2comp filterFunc sourceData (commonChars: int[]) =
     |> Array.map (fun x -> int x - int '0')
     |> binToDec
 
-let mainDay3 projectDir =
+
+//Entry point
+let main projectDir =
     let sourceData = getText projectDir
     let commonChars = commonChar (List.ofArray sourceData)
 
