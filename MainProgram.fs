@@ -24,6 +24,8 @@ let rec mainiter codeSum =
                          Day7.main projectDir
                 | "8" -> Console.WriteLine("Day " + selection + " Results:")
                          Day8.main projectDir
+                | "9" -> Console.WriteLine("Day " + selection + " Results:")
+                         Day9.main projectDir
 
                 | _ -> Console.WriteLine("Unrecognised input code.")
                        -1

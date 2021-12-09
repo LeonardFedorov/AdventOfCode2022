@@ -84,8 +84,7 @@ let findC (charCounts: int[]) charMap =
                 |> Array.findIndex (eq true)
     ( (indexToChar cIndex ), 'c') :: charMap
 
-let findD (clueNumbers: string[]) charMap =
-    
+let findD (clueNumbers: string[]) charMap =   
     let missingChars = Array.map (fun x -> findMissingChar x) (Array.filter (eqStrLength (numChars - 1)) clueNumbers)
     let dImage = Array.map (fun x -> mapChar x charMap) missingChars //'0' will tell us which entry is not mapped yet
                  |> Array.findIndex (eq '0')
@@ -99,7 +98,6 @@ let findG charMap =
     (gChar, 'g') :: charMap
 
 let getCharMapping (clueNumbers: string[]) (charCounts: int[]) =
-    
     List.empty<(char * char)>
     |> findA clueNumbers
     |> getUniqueCountChars charCounts
