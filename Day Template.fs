@@ -9,13 +9,13 @@ let getText projectDir =
     let fileStream = new StreamReader(projectDir + "\\DayXInput.txt")
     fileStream.ReadToEnd()
  
- //Part 1
+//Part 1
 
 
- //Part 2
+//Part 2
 
 
- //Entry point
+//Entry point
 let main projectDir =
 
     Console.WriteLine("Part 1: Not Implemented."  )

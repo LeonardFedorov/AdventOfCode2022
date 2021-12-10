@@ -87,3 +87,12 @@ Day 9 provided a fairly straightforward part 1, with part 2 presenting a greater
 The key efficiency realisation was that since every basin must contain a low point, taking an output of the list of low points from part 1 could be used to drive the initial start points to the search algorithm as opposed to simply trying every point and doing the iteration if it wasn't already in a basin list.
 
 </details>
+
+<details>
+	<summary>Day 10</summary>
+
+Day 10 was very straight forward, though a bit more fiddly than other easy days such as 6 and 7. The only thing that caused an issue was in my initial solution for part 2, the score calculation was silently overflowing leading to an incorrect final scores being generated. After switching all of the relevant variables to 64bit this problem resolved.
+
+A potential minor optimisation would be to find a way to neatly filter the array to the incomplete only strings ready for part 2 using the score array generated for part 1 - the easiest way to do this would be using a filteri style function, though there isn't one available in F# by default for some reason. The solution executes instantly in any case so not an important issue to fix.
+
+</details>
