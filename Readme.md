@@ -78,3 +78,12 @@ Day 8 was the hardest so far, eeking out even Day 3. The part 1 of the puzzle wa
 After determining the character decoding, the answer strings are then decoded and converted to a single base 10 number for aggregation at output. Some optimisation would be possible as there are searches into the existant mapping array when the required information had existed in the past and could be passed forward, but I think on balance the cost of the map search is minimal compared to the clutter of passing around the extra information.
 
 </details>
+
+<details>
+	<summary>Day 9</summary>
+
+Day 9 provided a fairly straightforward part 1, with part 2 presenting a greater challenege. Although it was fairly easy to find a way to solve part 2, the brute force approach seemed extremely inefficient. My planned approach was to find basins by picking a start point in each basin and then searching outwards from it, building up a list of points in that basin and then ending the search when no more points no already in the list could be found. In this way, a list of basins (where each basin is a list of its constituent points) could be forned. 
+
+The key efficiency realisation was that since every basin must contain a low point, taking an output of the list of low points from part 1 could be used to drive the initial start points to the search algorithm as opposed to simply trying every point and doing the iteration if it wasn't already in a basin list.
+
+</details>
