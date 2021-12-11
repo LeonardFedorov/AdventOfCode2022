@@ -41,16 +41,33 @@ let rec processFlashes (octopusMap: int[][], flashCount: int) (flashList: (int*i
         processFlashes (newOctopusMap, flashCount + flashList.Length) (get10List newOctopusMap)
    
 
-let rec calculateCycles (octopusMap, flashCount: int) iter =
-    if iter = 0 then 
-        flashCount
+let rec calculateCyclesiter (octopusMap, flashCountIter: int) iterToReturn iter (iterReached, countAtIter, syncFound, itersAtSync) =
+    
+    //set the booleans to control the loop
+    let iterReachedOut = if iter = iterToReturn then true else iterReached    
+    let syncFoundOut = if itersAtSync > -1 then true else syncFound
+    
+    //exit the loop if conditions met
+    if iterReachedOut && syncFoundOut then 
+        (countAtIter, itersAtSync)
     else
+        //otherwise process next iteration
+        
+        
         //First, the natural increase of 1 to every octopus
         let newOctopusMap = Array.map (fun row -> Array.map (fun element -> element + 1) row) octopusMap
-        
-        let cycleResult = processFlashes (newOctopusMap, flashCount) (get10List newOctopusMap)
+        let flashList = get10List newOctopusMap
 
-        calculateCycles cycleResult (iter - 1)
+        let cycleResult = processFlashes (newOctopusMap, flashCountIter) flashList
+
+        let itersAtSyncOut = if snd cycleResult - flashCountIter >= (newOctopusMap.Length * newOctopusMap.[0].Length) then 
+                                iter + 1 
+                             else itersAtSync
+
+        calculateCyclesiter cycleResult iterToReturn (iter + 1) (iterReachedOut, snd cycleResult, syncFoundOut, itersAtSyncOut)
+
+let calculateCycles octopusMap iterToReturn =
+    calculateCyclesiter (octopusMap, 0) iterToReturn 0 (false, 0, false, -1)
 
 //Part 2
 
@@ -59,8 +76,8 @@ let main projectDir =
 
     let sourceData = getText projectDir
 
-    let flashes = calculateCycles (sourceData, 0) 100
+    let flashes = calculateCycles sourceData 100
 
-    Console.WriteLine("Part 1: " + flashes.ToString() )
-    Console.WriteLine("Part 2: Not Implemented."  )
+    Console.WriteLine("Part 1: " + (fst flashes).ToString() )
+    Console.WriteLine("Part 2: " + (snd flashes).ToString()  )
     -1

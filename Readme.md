@@ -96,3 +96,12 @@ Day 10 was very straight forward, though a bit more fiddly than other easy days 
 A potential minor optimisation would be to find a way to neatly filter the array to the incomplete only strings ready for part 2 using the score array generated for part 1 - the easiest way to do this would be using a filteri style function, though there isn't one available in F# by default for some reason. The solution executes instantly in any case so not an important issue to fix.
 
 </details>
+
+<details>
+	<summary>Day 10</summary>
+
+Day 11 was not conceptually challenging, but proved tricky to find the optimal way to construct the loop structure required to evaluate the solution. I think this was a consequence of needing to pass all variables to be tracked over time around the iterator which resulted in more syntactic complexity than a comparative solution with mutable values persisting between loops. 
+
+This was another day where attempting to use the built in 2D array in F# proved unweildly as the options for iterators on nested arrays are far more powerful. It seems increasingly to me that this construct is generally a red herring except in niche circumstances?
+
+</details>
