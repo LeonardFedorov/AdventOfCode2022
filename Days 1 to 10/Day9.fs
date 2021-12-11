@@ -13,7 +13,7 @@ let getText projectDir =
 let boundsTest i j (sourceArray: 'a [][]) =
     i >= 0 && i < sourceArray.Length && j >= 0 && j < sourceArray.[i].Length
 
- //Part 1
+//Part 1
 
 let testPoint i j (sourceArray: int [][]) point =
     if boundsTest i j sourceArray then
@@ -37,7 +37,7 @@ let getLowList sourceArray =
     Array.fold (fun (list, i) x -> ((getLowsfromRow x list sourceArray i), i+1) ) (List.empty<(int * int)> , 0) sourceArray
     |> fst
 
- //Part 2
+//Part 2
 
 let considerPoint sourceArray (i, j) (basinList, considerQueue) =   
     //If the point to be considered is out of bounds, equal to 9, or already in the basin
@@ -86,7 +86,7 @@ let rec findBasins sourceArray (startPointList: (int*int) list) basinsList =
         else
             findBasins sourceArray newStartPointList newBasinsList
 
- //Entry point
+//Entry point
 let main projectDir =
 
     let sourceData = getText projectDir
