@@ -7,8 +7,9 @@ open System.IO
 //Common
 let getText projectDir =
     let fileStream = new StreamReader(projectDir + "\\DayXInput.txt")
-    fileStream.ReadToEnd()
- 
+    fileStream.ReadToEnd().Split([|"\r\n"|], StringSplitOptions.None)
+
+
 //Part 1
 
 

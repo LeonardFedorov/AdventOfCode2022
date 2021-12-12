@@ -98,10 +98,19 @@ A potential minor optimisation would be to find a way to neatly filter the array
 </details>
 
 <details>
-	<summary>Day 10</summary>
+	<summary>Day 11</summary>
 
 Day 11 was not conceptually challenging, but proved tricky to find the optimal way to construct the loop structure required to evaluate the solution. I think this was a consequence of needing to pass all variables to be tracked over time around the iterator which resulted in more syntactic complexity than a comparative solution with mutable values persisting between loops. 
 
 This was another day where attempting to use the built in 2D array in F# proved unweildly as the options for iterators on nested arrays are far more powerful. It seems increasingly to me that this construct is generally a red herring except in niche circumstances?
+
+</details>
+
+<details>
+	<summary>Day 12</summary>
+
+Day 12 wasn't hard conceptually, as it could be solved with a fairly routine branching recursion, however I found some challenge in thinking of a way to express this somewhat elegently in the language. I settled on splitting the recursion across two functions - one of which processed the items and put forward a list of items for further processing, and a second function that took the list and dispatched instances of the first function to follow up on them. 
+
+Part 2, while irritating at first glance, actually was fairly simple to implement as it only required changing the filtering logic when selecting which small caves to put forward for further consideration, although there some fiddliness getting the logic to work exactly. The two parts run using the same code, with a parameter governing how many times the multiplied small cave is allowed to be visited.
 
 </details>
