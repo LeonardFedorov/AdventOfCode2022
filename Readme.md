@@ -48,9 +48,11 @@ The code would run faster if the boolean tick array was mutated each iteration r
 <details>
 	<summary>Day 5</summary>
 
-Day 5 is the first problem that takes a non-negligable amount of time to process. It also has been written so that it only outputs the part 2 solution and no longer produces the part 1 answer. The overhead arises from the fact that the rebuild of the array to update for each new line is being done over a c.1000x1000 so has a far greater impact than the 5x5 bingo cards in Day 4.
+Day 5 is the first problem that takes a non-negligable amount of time to process. The overhead arises from the fact that the rebuild of the array to update for each new line is being done over a c.1000x1000 so has a far greater impact than the 5x5 bingo cards in Day 4.
 
 That inefficiency aside, the logic for identifying points on the lines was aided greatly by pre-processing the lines during data import to ensure they always ran left to right. Although the line test logic is explicitly split out into 4 separate cases, on reflection there is a lot of similarity so condensing it might be possible.
+
+The initial solution to this part replaced the part 1 solution with the part 2, but I have tweaked it so that it can generate both, albeit in an inefficient manner. It would be more efficient to generate the part 1 map, then overlay the diagonal consideration onto this, but this would require much of a rework of the logic.
 
 </details>
 

@@ -32,7 +32,32 @@ let rec mainiter codeSum =
                           Day11.main projectDir
                 | "12" -> Console.WriteLine("Day " + selection + " Results:")
                           Day12.main projectDir
-
+                | "13" -> Console.WriteLine("Day " + selection + " Results:")
+                          DayX.main projectDir
+                | "14" -> Console.WriteLine("Day " + selection + " Results:")
+                          DayX.main projectDir
+                | "15" -> Console.WriteLine("Day " + selection + " Results:")
+                          DayX.main projectDir
+                | "16" -> Console.WriteLine("Day " + selection + " Results:")
+                          DayX.main projectDir
+                | "17" -> Console.WriteLine("Day " + selection + " Results:")
+                          DayX.main projectDir
+                | "18" -> Console.WriteLine("Day " + selection + " Results:")
+                          DayX.main projectDir
+                | "19" -> Console.WriteLine("Day " + selection + " Results:")
+                          DayX.main projectDir
+                | "20" -> Console.WriteLine("Day " + selection + " Results:")
+                          DayX.main projectDir
+                | "21" -> Console.WriteLine("Day " + selection + " Results:")
+                          DayX.main projectDir
+                | "22" -> Console.WriteLine("Day " + selection + " Results:")
+                          DayX.main projectDir
+                | "23" -> Console.WriteLine("Day " + selection + " Results:")
+                          DayX.main projectDir
+                | "24" -> Console.WriteLine("Day " + selection + " Results:")
+                          DayX.main projectDir
+                | "25" -> Console.WriteLine("Day " + selection + " Results:")
+                          DayX.main projectDir
                 | _ -> Console.WriteLine("Unrecognised input code.")
                        -1
 

@@ -44,22 +44,22 @@ let day5input projectDir =
     |> Array.map (fun x -> lineParse x)
 
 //test if the point (i,j) lies on the line specified
-let isOnLine i j (line: lineData) =
+let isOnLine i j (line: lineData) diags =
     let point1 = fst line.line
     let point2 = snd line.line
     if line.dir = lineDirection.Horizontal then
         (j = snd point1) && (i >= fst point1) && (i <= fst point2) 
     elif line.dir = lineDirection.Vertical then
         (i = fst point1) && (j >= snd point1) && (j <= snd point2) 
-    elif line.dir = lineDirection.downDiagonal then
+    elif line.dir = lineDirection.downDiagonal && diags then
         (i + j = fst point1 + snd point1) && (i >= fst point1) && (i <= fst point2) 
-    elif line.dir = lineDirection.upDiagonal then
+    elif line.dir = lineDirection.upDiagonal && diags then
         (i - fst point1 = j - snd point1) && (i >= fst point1) && (i <= fst point2) 
     else
         false
 
-let updateMap map line =
-    Array2D.mapi (fun i j x -> if (isOnLine i j line) then x + 1 else x) map
+let updateMap map line diags =
+    Array2D.mapi (fun i j x -> if (isOnLine i j line diags) then x + 1 else x) map
     
 let countPoints map value =
     Seq.fold (fun s x -> s + if x >= value then 1 else 0) 0 (Seq.cast<int> map)
@@ -69,10 +69,12 @@ let countPoints map value =
 let main projectDir =
     let sourceData = day5input projectDir
     let maxDim = Array.fold (fun s x -> max s x.maxValue) 0 sourceData
-    let ventMap = Array.fold (fun map line -> updateMap map line) (Array2D.create maxDim maxDim 0) sourceData
+    let ventMap1 = Array.fold (fun map line -> updateMap map line false) (Array2D.create maxDim maxDim 0) sourceData
+    let ventMap2 = Array.fold (fun map line -> updateMap map line true) (Array2D.create maxDim maxDim 0) sourceData
 //    let ventMap2 = Array2D.init maxDim maxDim (fun i j -> Array.fold (fun s x -> if isOnLine i j x then s + 1 else s) 0 sourceData)
     
     Console.WriteLine("Maximum coordinate found: " + maxDim.ToString())
-    Console.WriteLine("Count of 2+ locations (part 2 only): " + (countPoints ventMap 2).ToString())
+    Console.WriteLine("Count of 2+ locations (part 1): " + (countPoints ventMap1 2).ToString())
+    Console.WriteLine("Count of 2+ locations (part 2): " + (countPoints ventMap2 2).ToString())
 
     5 //expected integer return code
