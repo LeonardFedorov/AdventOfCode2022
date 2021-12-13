@@ -35,7 +35,7 @@ let foldMap (x,y) (foldType, foldLine) =
         if y < foldLine then
             (x,y)
         else
-            (x, foldLine - (y - foldLine))
+            (x, foldLine - (y - foldLine) )
 
 let foldPoint point newPoints currFold =
 
@@ -60,10 +60,8 @@ let rec foldPaper points (foldList: (foldDir*int) list) count =
 let PrintArray (sourceArray: char[][]) =
     
     Array.map (fun (row: char[]) -> String(row) ) sourceArray
-    |> Array.iter (fun row -> Console.WriteLine(row))
+    |> Array.iter (fun row -> Console.WriteLine(row))   
     |> ignore
-
-    "test"
     
 //Entry point
 let main projectDir =
@@ -74,10 +72,10 @@ let main projectDir =
 
     let finalPoints = foldPaper sourcePoints foldList 1
 
-    let (maxX, maxY) = List.fold (fun (aX,aY) (x,y) -> (max aX x, max aY y)) (0,0) finalPoints
+    let (maxX , maxY) = List.fold (fun (aX,aY) (x,y) -> (max aX (x+1), max aY (y+1))) (0,0) finalPoints
 
     Console.Write("\nFinal Result: \n\n")
-    let output = Array.init maxY (fun j -> (Array.init maxX (fun i -> if (None <> List.tryFind (fun x -> x = (i,j)) finalPoints) then '-' else '#' ) ) )
-                 |> PrintArray
-
+    let output = Array.init maxY (fun j -> (Array.init maxX (fun i -> if (None <> List.tryFind (fun x -> x = (i,j)) finalPoints) then '#' else '-' ) ) )
+                 |> PrintArray    
+    
     13
