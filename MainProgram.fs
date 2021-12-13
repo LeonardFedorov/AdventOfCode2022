@@ -33,7 +33,7 @@ let rec mainiter codeSum =
                 | "12" -> Console.WriteLine("Day " + selection + " Results:")
                           Day12.main projectDir
                 | "13" -> Console.WriteLine("Day " + selection + " Results:")
-                          DayX.main projectDir
+                          Day13.main projectDir
                 | "14" -> Console.WriteLine("Day " + selection + " Results:")
                           DayX.main projectDir
                 | "15" -> Console.WriteLine("Day " + selection + " Results:")

@@ -80,4 +80,4 @@ let main projectDir =
 
     Console.WriteLine("Part 1: " + (fst flashes).ToString() )
     Console.WriteLine("Part 2: " + (snd flashes).ToString()  )
-    -1
+    11

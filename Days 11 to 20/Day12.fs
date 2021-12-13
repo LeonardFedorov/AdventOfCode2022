@@ -85,4 +85,4 @@ let main projectDir =
 
     Console.WriteLine("Part 1: " + listOfPathsP1.Length.ToString() )
     Console.WriteLine("Part 2: " + listOfPathsP2.Length.ToString()  )
-    -1
+    12
