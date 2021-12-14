@@ -116,3 +116,12 @@ Day 12 wasn't hard conceptually, as it could be solved with a fairly routine bra
 Part 2, while irritating at first glance, actually was fairly simple to implement as it only required changing the filtering logic when selecting which small caves to put forward for further consideration, although there some fiddliness getting the logic to work exactly. The two parts run using the same code, with a parameter governing how many times the multiplied small cave is allowed to be visited.
 
 </details>
+
+<details>
+	<summary>Day 13</summary>
+
+I found the explanation for Day 13 made it unclear where exactly the fold line was and how this aligned with a 0 based array (I don't know if I missed some tiny detail in the explanation, but to me this wasn't clear). So I initially included a indexing adjustment that was unnecessary.
+
+For part 2, my initial solution did not appear to work and it took about an hour to realse I had outputted the yes/no characters the wrong way round. Such is life sometimes...
+
+</details>
