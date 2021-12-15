@@ -54,4 +54,4 @@ let main projectDir =
 
     Console.WriteLine("Part 1: " + (Array.max part1LetterCounts - Array.min part1LetterCounts).ToString())
     Console.WriteLine("Part 2: " + (Array.max part2LetterCounts - Array.min part2LetterCounts).ToString())
-    -1
+    14
