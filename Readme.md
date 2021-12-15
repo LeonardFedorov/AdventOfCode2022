@@ -125,3 +125,12 @@ I found the explanation for Day 13 made it unclear where exactly the fold line w
 For part 2, my initial solution did not appear to work and it took about an hour to realse I had outputted the yes/no characters the wrong way round. Such is life sometimes...
 
 </details>
+
+<details>
+	<summary>Day 14</summary>
+
+This solution, of all to day, is the most readily accusable of being over-engineered. After initially building the string explicitly to solve part 1 - and then rapidly hitting the exponential growth brick wall when trying part 2 - I ended up with this monstrosity. In effect, it creates a giant mapping array in memory as part of the inital text parse which then allows the actual iteration steps to execute in linear time. The solution assumes that every possible pair mapping is specified in the input (which I verified by inspecting the input text in Excel) and that every letter is the result of at least one pair map. 
+
+While an ugly solution, it does at least execute instantly - and would likely continue to execute instantly even on extremely large iterations as the iteration step simply performs addition of integers using lookups fixed at the start.
+
+</details>
