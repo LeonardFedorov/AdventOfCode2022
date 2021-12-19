@@ -18,7 +18,8 @@ let buildNeighbourlist place pathMap =
                                                                  elif path.[1] = place && path.[0] <> startCave then
                                                                     path.[0] :: neighbours
                                                                  else
-                                                                    neighbours) List.empty pathMap
+                                                                    neighbours
+                            ) List.empty pathMap
         
 let getText projectDir =
     let fileStream = new StreamReader(projectDir + "\\Day12Input.txt")
@@ -84,5 +85,5 @@ let main projectDir =
     let listOfPathsP2 = getNeighbours neighboursLists 2 [startCave] list.Empty
 
     Console.WriteLine("Part 1: " + listOfPathsP1.Length.ToString() )
-    Console.WriteLine("Part 2: " + listOfPathsP2.Length.ToString()  )
+    Console.WriteLine("Part 2: " + listOfPathsP2.Length.ToString() )
     12
