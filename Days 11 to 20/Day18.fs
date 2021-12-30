@@ -105,14 +105,14 @@ let rec doExplode snailNumber depth =
                 let (newNumber, exploded, direction, debris) = doExplode left (depth + 1)
                 if exploded then 
                     if direction = pushDir.right then
-                        (Node(newNumber, addToRight right debris), exploded, pushDir.noDebris, 0)
+                        (Node(newNumber, addToLeft right debris), exploded, pushDir.noDebris, 0)
                     else
                         (Node(newNumber, right), exploded, direction, debris)
                 else 
                     let (newNumber, exploded, direction, debris) = doExplode right (depth + 1)
                     if exploded then
                         if direction = pushDir.left then
-                            (Node(addToLeft left debris, newNumber), exploded, pushDir.noDebris, 0)
+                            (Node(addToRight left debris, newNumber), exploded, pushDir.noDebris, 0)
                         else
                             (Node(left, newNumber), exploded, direction, debris)
                     else
@@ -129,7 +129,7 @@ let callExplode snailNumber =
 //Entry point
 let main projectDir =
 
-    let testItem = callExplode (parseSnailNumber "[[3,[2,[1,[7,3]]]],[6,[5,[4,[3,2]]]]]")
+    let testItem = callExplode (parseSnailNumber "[7,[6,[5,[4,[3,2]]]]]")
     let testString = (fst testItem).ToString()
 
     let sourceData = getText projectDir
