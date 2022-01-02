@@ -134,3 +134,12 @@ This solution, of all to day, is the most readily accusable of being over-engine
 While an ugly solution, it does at least execute instantly - and would likely continue to execute instantly even on extremely large iterations as the iteration step simply performs addition of integers using lookups fixed at the start.
 
 </details>
+
+<details>
+	<summary>Day 18</summary>
+
+This problem proved very fiddly. This problem led me to discover discriminated unions, which proved vastly superior to using a recursive record with options within. The hardest part of the problem by far was dealing with the explosion operation, as it was necessary not only recursively search the tree for a pair eligable to be exploded, but then to carry the debris values back up the tree in order to find somewhere to place it. This results in a 4-tuple of data being passed back up the recursion stack and the need to process this. 
+
+Part 2 was very straight forward at least, and was a solvable using a quick map construction.
+
+</details>

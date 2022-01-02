@@ -27,15 +27,18 @@ let isValue snailPart =
 
 let rec parseSnailNumber (input: string) =
     let intParse = Int32.TryParse(input)
+    //If we are looking at an integer, then this is a terminal node. Otherwise, proceed to parse the pair text
     if fst intParse then
         Value(snd intParse) 
     else
+        //Find where the comma which is scoped to the outermost bracket is located
         let (separatorPlace, bracketCount, index) = Array.fold (fun (place, bracketCount, i) char -> match char with 
                                                                                                      | '[' -> (place, bracketCount + 1, i + 1)
                                                                                                      | ']' -> (place, bracketCount - 1, i + 1)
                                                                                                      | ',' -> if bracketCount = 1 then (i, bracketCount, i + 1) else (place, bracketCount, i + 1)
                                                                                                      | _ -> (place, bracketCount, i + 1)
                                                          ) (-1, 0, 0) (input.ToCharArray())
+        //Slice the string either side of the highest scoped comma and exclude the outermost brackets
         Node(parseSnailNumber input.[1..(separatorPlace - 1)], parseSnailNumber input.[(separatorPlace + 1)..(input.Length - 2)])
 
 let getText projectDir =
@@ -75,7 +78,7 @@ let rec addToRight snailNumber debris =
         | Value(x) -> Value(x + debris)
         | Node(left, right) -> Node(left, addToRight right debris)
 
-
+       
 //Perform the explode operation
 let rec doExplode snailNumber depth =
     
@@ -123,17 +126,36 @@ let callExplode snailNumber =
     let (resultNumber, exploded, push, debris) = doExplode snailNumber 1
     (resultNumber, exploded)
 
+//Reduction and addition
+let rec reduceNumber snailNumber =
+    let (explodedNumber, explodeResult) = callExplode snailNumber
+    let (finalNumber, finalResult) = if not explodeResult then doSplit explodedNumber
+                                     else (explodedNumber, explodeResult)
 
+    if finalResult then reduceNumber finalNumber
+    else finalNumber
 
+let snailAdd a b =
+    reduceNumber (Node(a,b))
+
+let rec magnitude snailNumber =
+    match snailNumber with
+        | Value(x) -> x
+        | Node(left, right) -> 3 * (magnitude left) + 2 * (magnitude right)
+
+let addToAll snailNumber numberList =
+    List.map (fun x -> magnitude (snailAdd snailNumber x)) numberList
+    |> List.max
 
 //Entry point
 let main projectDir =
 
-    let testItem = callExplode (parseSnailNumber "[7,[6,[5,[4,[3,2]]]]]")
-    let testString = (fst testItem).ToString()
-
     let sourceData = getText projectDir
 
-    Console.WriteLine("Part 1: Not Implemented."  )
-    Console.WriteLine("Part 2: Not Implemented."  )
+    let part1Sum = List.fold (fun s x -> snailAdd s x) sourceData.Head sourceData.Tail
+    let maxSum = List.map (fun x -> addToAll x sourceData) sourceData
+                 |> List.max
+
+    Console.WriteLine("Part 1: " + (magnitude part1Sum).ToString())
+    Console.WriteLine("Part 2: " + maxSum.ToString()  )
     18
