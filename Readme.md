@@ -136,6 +136,15 @@ While an ugly solution, it does at least execute instantly - and would likely co
 </details>
 
 <details>
+	<summary>Day 15</summary>
+
+This problem ended up being a massive headache, but this was largely self inflicted from attacking the problem piecemeal over a long period of time as other things came up. Given the performance implications of the problem, I ended up using single mutable data structure to track the progress of the algorithm over time, which turned out to be sensible as part 2 took several seconds to execute even with this. Further optimisations that could be made would be: 
+1. Maintaining the active point list in a sorted state so that new points could be added by insertion and then the minimum point would simply be the head of the list
+2. Actively pruning duplicate entries for a single point, which arise when a point is revisted, as these inflate the list and add headroom to the list operations. 
+
+</details>
+
+<details>
 	<summary>Day 18</summary>
 
 This problem proved very fiddly. This problem led me to discover discriminated unions, which proved vastly superior to using a recursive record with options within. The hardest part of the problem by far was dealing with the explosion operation, as it was necessary not only recursively search the tree for a pair eligable to be exploded, but then to carry the debris values back up the tree in order to find somewhere to place it. This results in a 4-tuple of data being passed back up the recursion stack and the need to process this. 

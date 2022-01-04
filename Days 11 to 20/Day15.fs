@@ -35,29 +35,6 @@ let lt (a: option<int>) (b: option<int>) =
 let add (a: option<int>) (b: int) =
     if a.IsNone then None else Some ((a.Value) + b)
 
-(*
-let rec findMinPointIter (i, j) (minPoint: pointData) workingState =
-    
-    //See if the weight + heuristic of the current point is less than the lowest seen
-    let newMin = if lt (add workingState.array.[i,j].weight workingState.array.[i,j].heuristic) (add minPoint.weight minPoint.heuristic) then
-                    workingState.array.[i,j]
-                 else
-                    minPoint
-
-    //Continue the iteration within the bounds of the working state's max point
-    if i = workingState.maxI then
-        if j = workingState.maxJ then
-            newMin
-        else
-            findMinPointIter (0, j+1) newMin workingState
-    else
-        findMinPointIter (i+1, j) newMin workingState
-
-let findMinPoint workingState =
-    findMinPointIter (0,0) workingState.array.[0,0] workingState
-
-*)
-
 let getMinPoint (pointList: pointData list) =
     //Since we are working in the list of points visited, we know that none of them will have None for a weight
     let (min, minIndex, index) = List.fold (fun (min, minIndex, index) x -> if x.weight.Value + x.heuristic < min then (x.weight.Value + x.heuristic, index, index + 1) 
@@ -124,26 +101,31 @@ let findShortestPath (sourceArray: int[,]) =
     workingData.array.[0,0] <- firstPoint
     calculateStep workingData sourceArray
 
-//Part 1
-
-
 //Part 2
+let rec incrementValue value count =
+    if count = 0 then value
+    else incrementValue (value % 9 + 1) (count - 1)
+
 let buildPart2 (sourceData: int[,]) copies =
 
     let dimI = Array2D.length1 sourceData
     let dimJ = Array2D.length2 sourceData
 
-    Array2D.init (dimI * copies) (dimJ * copies) (fun i j -> sourceData.[i % dimI, j % dimJ])
+    Array2D.init (dimI * copies) (dimJ * copies) (fun i j ->  let iBlock = i / dimI 
+                                                              let jBlock = j / dimJ
+                                                              incrementValue sourceData.[i % dimI, j % dimJ] (iBlock + jBlock)
+                                                  )
 
 
 //Entry point
 let main projectDir =
 
     let sourceData = getText projectDir
-    let part2Data = buildPart2 sourceData
+    let part2Data = buildPart2 sourceData 5
 
     let part1 = findShortestPath sourceData
+    let part2 = findShortestPath part2Data
 
     Console.WriteLine("Part 1: " + part1.ToString() )
-    Console.WriteLine("Part 2: Not Implemented."  )
+    Console.WriteLine("Part 2: " + part2.ToString() )
     15
