@@ -145,6 +145,13 @@ This problem ended up being a massive headache, but this was largely self inflic
 </details>
 
 <details>
+	<summary>Day 16</summary>
+
+This day seemed quite fiddly on first inspection, but proved susceptible to a reasonably elegant solution in the end. A curve ball was that the evaluation step in part 2 required 64 bit airthmetic to prevent overflow, which I addressed by setting the function that parsed binary strings into numbers to output 64 bit integers. This had the somewhat fiddly side effect of requiring every integer literal in the code to be marked as long and is probably not fully memory optimal given the majority of the integers are extremely small. Given the solution executes instantly though, this is fairly academic. 
+
+</details>
+
+<details>
 	<summary>Day 18</summary>
 
 This problem proved very fiddly. This problem led me to discover discriminated unions, which proved vastly superior to using a recursive record with options within. The hardest part of the problem by far was dealing with the explosion operation, as it was necessary not only recursively search the tree for a pair eligable to be exploded, but then to carry the debris values back up the tree in order to find somewhere to place it. This results in a 4-tuple of data being passed back up the recursion stack and the need to process this. 
