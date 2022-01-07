@@ -11,7 +11,7 @@ let triangle x = x * (x + 1) / 2
 
 let reverseTriangle x =
     let xFloat = float x
-    let result = (1.0 + sqrt(1.0 + 8.0 * xFloat))/2.0
+    let result = (-1.0 + sqrt(1.0 + 8.0 * xFloat))/2.0
     int (Math.Floor result) - 1
 
 //Parse input data
