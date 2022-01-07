@@ -34,10 +34,9 @@ let rec runGame1 (p1Pos, p2Pos) (p1Score, p2Score) diceRoll =
 
 //Part 2
 let scoreLimit = 21
+let rollMultipliers = [|1L;3L;6L;7L;6L;3L;1L|]
 
-//let rollMultipliers = [|(3,1);(4,3);(5,6);(6,10);(7,6);(8,3);(9,1)|]
-
-let getNewPositions currentPos = (updatePos currentPos 3, updatePos currentPos 4, updatePos currentPos 5, updatePos currentPos 6, updatePos currentPos 7, updatePos currentPos 8, updatePos currentPos 9) 
+let getNewPositions currentPos = Array.init 7 (fun i -> updatePos currentPos (i+3))
 
 let rec game2P1Turn (p1Pos, p2Pos) (p1Score, p2Score) =
     
@@ -45,18 +44,9 @@ let rec game2P1Turn (p1Pos, p2Pos) (p1Score, p2Score) =
     if p2Score >= scoreLimit then
         (1L, 0L)
     else
-        let (newPos1, newPos2, newPos3, newPos4, newPos5, newPos6, newPos7) = getNewPositions p1Pos
-
-        let (v1GameCount, v1P1Wins) = game2P2Turn (newPos1, p2Pos) (p1Score + newPos1, p2Score)
-        let (v2GameCount, v2P1Wins) = game2P2Turn (newPos2, p2Pos) (p1Score + newPos2, p2Score)
-        let (v3GameCount, v3P1Wins) = game2P2Turn (newPos3, p2Pos) (p1Score + newPos3, p2Score)
-        let (v4GameCount, v4P1Wins) = game2P2Turn (newPos4, p2Pos) (p1Score + newPos4, p2Score)
-        let (v5GameCount, v5P1Wins) = game2P2Turn (newPos5, p2Pos) (p1Score + newPos5, p2Score)
-        let (v6GameCount, v6P1Wins) = game2P2Turn (newPos6, p2Pos) (p1Score + newPos6, p2Score)
-        let (v7GameCount, v7P1Wins) = game2P2Turn (newPos7, p2Pos) (p1Score + newPos7, p2Score)
-   
-        (v1GameCount + 3L*v2GameCount + 6L*v3GameCount + 7L*v4GameCount + 6L*v5GameCount + 3L*v6GameCount + v7GameCount, 
-         v1P1Wins + 3L*v2P1Wins + 6L*v3P1Wins + 7L*v4P1Wins + 6L*v5P1Wins + 3L*v6P1Wins + v7P1Wins)
+        getNewPositions p1Pos
+        |> Array.map (fun newPos -> game2P2Turn (newPos, p2Pos) (p1Score + newPos, p2Score)) 
+        |> Array.fold2 (fun (gameCounts, p1Wins) multiplicity (thisCount, thisWins) -> (gameCounts + multiplicity*thisCount, p1Wins + multiplicity*thisWins)) (0L,0L) rollMultipliers
 
 and game2P2Turn (p1Pos, p2Pos) (p1Score, p2Score) =
 
@@ -64,18 +54,9 @@ and game2P2Turn (p1Pos, p2Pos) (p1Score, p2Score) =
     if p1Score >= scoreLimit then
         (1L, 1L)
     else
-        let (newPos1, newPos2, newPos3, newPos4, newPos5, newPos6, newPos7) = getNewPositions p2Pos
-
-        let (v1GameCount, v1P1Wins) = game2P1Turn (p1Pos, newPos1) (p1Score, p2Score + newPos1)
-        let (v2GameCount, v2P1Wins) = game2P1Turn (p1Pos, newPos2) (p1Score, p2Score + newPos2)
-        let (v3GameCount, v3P1Wins) = game2P1Turn (p1Pos, newPos3) (p1Score, p2Score + newPos3)
-        let (v4GameCount, v4P1Wins) = game2P1Turn (p1Pos, newPos4) (p1Score, p2Score + newPos4)
-        let (v5GameCount, v5P1Wins) = game2P1Turn (p1Pos, newPos5) (p1Score, p2Score + newPos5)
-        let (v6GameCount, v6P1Wins) = game2P1Turn (p1Pos, newPos6) (p1Score, p2Score + newPos6)
-        let (v7GameCount, v7P1Wins) = game2P1Turn (p1Pos, newPos7) (p1Score, p2Score + newPos7)
-
-        (v1GameCount + 3L*v2GameCount + 6L*v3GameCount + 7L*v4GameCount + 6L*v5GameCount + 3L*v6GameCount + v7GameCount, 
-         v1P1Wins + 3L*v2P1Wins + 6L*v3P1Wins + 7L*v4P1Wins + 6L*v5P1Wins + 3L*v6P1Wins + v7P1Wins)
+        getNewPositions p2Pos
+        |> Array.map (fun newPos -> game2P1Turn (p1Pos, newPos) (p1Score, p2Score + newPos)) 
+        |> Array.fold2 (fun (gameCounts, p1Wins) multiplicity (thisCount, thisWins) -> (gameCounts + multiplicity*thisCount, p1Wins + multiplicity*thisWins)) (0L,0L) rollMultipliers
 
 //Entry point
 let main projectDir =

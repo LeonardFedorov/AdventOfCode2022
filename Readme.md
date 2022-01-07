@@ -166,3 +166,12 @@ This problem proved very fiddly. This problem led me to discover discriminated u
 Part 2 was very straight forward at least, and was a solvable using a quick map construction.
 
 </details>
+
+<details>
+	<summary>Day 21</summary>
+
+This problem, while not difficult conceptually, had the potential for a performance headache given the potential breadth of the recursion tree in part 2 from all of the forking at each dice roll. The approach I took was to, at each step, condense branches with the same score - that is while (1,1,2), (1,2,1) and (2,1,1) are considered separate outcomes in the problem, because the objective was only to count how many branches the tree had total, I would treat these three outcomes as one and simply multiply the returned branch value by 3. Still, despite this the solution still takes a few seconds to execute.
+
+A more intricate approach, that would be necessary if the scope of the problem was increased I think, would be to memorise game outcomes (e.g. once it has been calculated that the two players at positions x and y with scores a and b results in n branches, it is never necessary to calculate from this again), but this would require some kind of accumulating data structure that would sacrifice the idomatic simplicity of the pure recursion.
+
+</details>
