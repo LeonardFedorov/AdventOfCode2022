@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <Compile Include="Day Template.fs" />
+    <Content Include="InputData\Day21Input.txt" />
     <Content Include="InputData\Day19Input.txt" />
     <Content Include="InputData\Day18Input.txt" />
     <Content Include="InputData\Day17Input.txt" />
@@ -45,6 +46,7 @@
     <Compile Include="Days 10 to 19\Day17.fs" />
     <Compile Include="Days 10 to 19\Day18.fs" />
     <Compile Include="Days 10 to 19\Day19.fs" />
+    <Compile Include="Days 20 to 25\Day21.fs" />
     <Compile Include="MainProgram.fs" />
     <None Include="Readme.md" />
   </ItemGroup>

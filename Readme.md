@@ -152,6 +152,13 @@ This day seemed quite fiddly on first inspection, but proved susceptible to a re
 </details>
 
 <details>
+	<summary>Day 17</summary>
+
+This day was not particularly interesting from a programming perspective - the main effort here was working out bounds on possible candidate velocities to reduce the surface area of the brute force. With regards to the y velocity - the key observation is that if the probe is fired upwards, then it will return to the 0 line with a downward velocity 1 greater in magnitude than the velocity it was initially fired upwards at.
+
+</details>
+
+<details>
 	<summary>Day 18</summary>
 
 This problem proved very fiddly. This problem led me to discover discriminated unions, which proved vastly superior to using a recursive record with options within. The hardest part of the problem by far was dealing with the explosion operation, as it was necessary not only recursively search the tree for a pair eligable to be exploded, but then to carry the debris values back up the tree in order to find somewhere to place it. This results in a 4-tuple of data being passed back up the recursion stack and the need to process this. 
