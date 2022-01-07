@@ -128,9 +128,6 @@ let main projectDir =
     let (parsedPackets, residualString) = parsePacket sourceBin
     if residualString.Contains('1') then failwith "Incomplete parse"
 
-    let testData = parsePacket(hexToBin "04005AC33890")
-    let testResult = evaluatePacket (fst testData)
-
     Console.WriteLine("Part 1: " + (versionSum parsedPackets).ToString())
     Console.WriteLine("Part 2: " + (evaluatePacket parsedPackets).ToString())
     16

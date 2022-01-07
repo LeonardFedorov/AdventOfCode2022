@@ -4,7 +4,7 @@
 
 This project contains all of my solutions for the Advent of Code 2021 puzzle set (www.adventofcode.com) combined into a single project alongside my personalised input data. The entire project has been written in F# and is targeting a purely functional approach, with no use of mutable values or side effects (aside from console I/O with the User).
 
-This code is all solely my own work, and you can reference or use it to whatever extent it may be of use for you to do so. 
+This code is all solely my own work, and you can reference or use it to whatever extent it may be of use for you to do so. This is done entirely at your own risk as I make no claims this code is best practice, efficient, or stable outside of the limited scope of calculating my AoC answers.
 
 ## Structure
 

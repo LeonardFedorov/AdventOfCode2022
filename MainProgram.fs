@@ -1,12 +1,11 @@
 ﻿open System
 
-let rec mainiter codeSum =
+let rec mainiter projectDir codeSum =
 
     Console.WriteLine("\nSelect day to run calculation for:")
     let selection = Console.ReadLine()
     Console.Write("\n")
-    let projectDir = System.IO.Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + "\\InputData"
-
+    
     let code = match selection with
                 | "1" -> Console.WriteLine("Day " + selection + " Results:")
                          Day1.main projectDir
@@ -64,14 +63,16 @@ let rec mainiter codeSum =
     Console.WriteLine("\nCompute another day? y/n")
     let response = Console.ReadLine()
     match response with
-        | "y" | "Y" -> mainiter (codeSum + code)
+        | "y" | "Y" -> mainiter projectDir (codeSum + code)
         | _ -> codeSum + code
 
 [<EntryPoint>]
 let main argv =
     
+    let projectDir = System.IO.Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + "\\InputData"
+
     Console.WriteLine("#####################")
     Console.WriteLine("#Advent Of Code 2021#")
     Console.WriteLine("#####################")
 
-    mainiter 0
+    mainiter projectDir 0
