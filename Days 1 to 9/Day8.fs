@@ -4,20 +4,26 @@ module Day8
 open System
 open System.IO
 
-//Common
-let getText projectDir =
-    let fileStream = new StreamReader(projectDir + "\\Day8Input.txt")
-    fileStream.ReadToEnd().Split([|"\r\n"|], StringSplitOptions.None)
-
-
-//Part 1
-
-
-//Part 2
-
-
 //Entry point
 let main projectDir =
+
+    //Common
+    let getText projectDir =
+        let fileStream = new StreamReader(projectDir + "\\Day8Input.txt")
+        fileStream.ReadToEnd().Split([|"\r\n"|], StringSplitOptions.None)
+
+
+    //Part 1
+
+
+
+
+
+
+
+    //Part 2
+
+
 
     let sourceData = getText projectDir
 
