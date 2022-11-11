@@ -1,12 +1,12 @@
 ﻿[<AutoOpen>]
-module Day10
+module Day22
 
 open System
 open System.IO
 
 //Common
 let getText projectDir =
-    let fileStream = new StreamReader(projectDir + "\\Day10Input.txt")
+    let fileStream = new StreamReader(projectDir + "\\Day22Input.txt")
     fileStream.ReadToEnd().Split([|"\r\n"|], StringSplitOptions.None)
 
 

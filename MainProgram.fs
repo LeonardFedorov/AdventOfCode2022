@@ -46,17 +46,17 @@ let rec mainiter projectDir codeSum =
                 | "19" -> Console.WriteLine("Day " + selection + " Results:")
                           Day19.main projectDir
                 | "20" -> Console.WriteLine("Day " + selection + " Results:")
-                          DayX.main projectDir
+                          Day20.main projectDir
                 | "21" -> Console.WriteLine("Day " + selection + " Results:")
                           Day21.main projectDir
                 | "22" -> Console.WriteLine("Day " + selection + " Results:")
-                          DayX.main projectDir
+                          Day22.main projectDir
                 | "23" -> Console.WriteLine("Day " + selection + " Results:")
-                          DayX.main projectDir
+                          Day23.main projectDir
                 | "24" -> Console.WriteLine("Day " + selection + " Results:")
-                          DayX.main projectDir
+                          Day24.main projectDir
                 | "25" -> Console.WriteLine("Day " + selection + " Results:")
-                          DayX.main projectDir
+                          Day25.main projectDir
                 | _ -> Console.WriteLine("Unrecognised input code.")
                        -1
 
@@ -72,7 +72,7 @@ let main argv =
     let projectDir = System.IO.Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + "\\InputData"
 
     Console.WriteLine("#####################")
-    Console.WriteLine("#Advent Of Code 2021#")
+    Console.WriteLine("#Advent Of Code 2022#")
     Console.WriteLine("#####################")
 
     mainiter projectDir 0

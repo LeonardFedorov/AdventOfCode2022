@@ -4,25 +4,23 @@ module Day7
 open System
 open System.IO
 
+//Common
 let getText projectDir =
     let fileStream = new StreamReader(projectDir + "\\Day7Input.txt")
-    fileStream.ReadToEnd().Split(',')
-    |> Array.map (fun x -> Int32.Parse(x))
-    |> Array.sort
- 
-let sumOfDistances numberArray n =
-    Array.fold(fun s x -> s + abs(x - n)) 0 numberArray
+    fileStream.ReadToEnd().Split([|"\r\n"|], StringSplitOptions.None)
 
-let sumOfTriangleDistances numberArray n =
-    Array.fold(fun s x -> s + abs(x-n)*(abs(x-n)+1)/2) 0 numberArray
+
+//Part 1
+
+
+//Part 2
+
 
 //Entry point
 let main projectDir =
+
     let sourceData = getText projectDir
-    let median = sourceData.[(sourceData.Length + 1)/2 - 1]
-    let part2 = Array.init (Array.max sourceData) (fun i -> sumOfTriangleDistances sourceData i)
-                |> Array.min
-                
-    Console.WriteLine("Part 1: " + (sumOfDistances sourceData median).ToString() )
-    Console.WriteLine("Part 2: " + part2.ToString() )
-    1
+
+    Console.WriteLine("Part 1: Not Implemented."  )
+    Console.WriteLine("Part 2: Not Implemented."  )
+    -1
