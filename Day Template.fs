@@ -8,7 +8,7 @@ open System.IO
 let main projectDir =
 
     //Common
-    let sourceData =
+    let getText projectDir =
         let fileStream = new StreamReader(projectDir + "\\DayXInput.txt")
         fileStream.ReadToEnd().Split([|"\r\n"|], StringSplitOptions.None)
 
@@ -16,17 +16,10 @@ let main projectDir =
     //Part 1
 
 
-
-
-
-
-
     //Part 2
 
 
-
-    //Output
-
+    let sourceData = getText projectDir
 
     Console.WriteLine("Part 1: Not Implemented."  )
     Console.WriteLine("Part 2: Not Implemented."  )
