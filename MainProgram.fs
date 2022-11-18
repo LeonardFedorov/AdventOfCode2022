@@ -11,7 +11,7 @@ let main argv =
         
         Console.WriteLine("Day " + selection + " Results:")
 
-        let timer = new System.Diagnostics.Stopwatch()
+        let timer = new Diagnostics.Stopwatch()
         timer.Start()
 
         let code = match selection with
@@ -42,11 +42,11 @@ let main argv =
                     | "25" -> Day25.main projectDir
                     |  _   -> Console.WriteLine("Unrecognised input code.")
                               -1
-
+    
         timer.Stop()
-        let timeTaken = float(timer.ElapsedTicks) / float(System.Diagnostics.Stopwatch.Frequency)
-        Console.WriteLine("\nTime Taken: " + (timeTaken).ToString() + " seconds")
-  
+        let timeTaken = (float timer.ElapsedTicks) / (float Diagnostics.Stopwatch.Frequency)
+        Console.WriteLine("\nTime taken: " + timeTaken.ToString() + " seconds")
+
         Console.WriteLine("\nCompute another day? y/n")
         let response = Console.ReadLine()
         match response with
