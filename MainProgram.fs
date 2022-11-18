@@ -10,7 +10,10 @@ let main argv =
         Console.Write("\n")
         
         Console.WriteLine("Day " + selection + " Results:")
-    
+
+        let timer = new Diagnostics.Stopwatch()
+        timer.Start()
+
         let code = match selection with
                     | "1"  -> Day1.main projectDir
                     | "2"  -> Day2.main projectDir
@@ -40,6 +43,10 @@ let main argv =
                     |  _   -> Console.WriteLine("Unrecognised input code.")
                               -1
     
+        timer.Stop()
+        let timeTaken = (float timer.ElapsedTicks) / (float Diagnostics.Stopwatch.Frequency)
+        Console.WriteLine("\nTime taken: " + timeTaken.ToString() + " seconds")
+
         Console.WriteLine("\nCompute another day? y/n")
         let response = Console.ReadLine()
         match response with
