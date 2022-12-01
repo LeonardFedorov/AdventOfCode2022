@@ -19,7 +19,7 @@ The input data is kept in the repository, with the pathing to this data handled 
 <details>
 	<summary>Day 1</summary>
 
-Not attempted yet.
+A straight forward puzzle, nothing much to say really.
 
 </details>
 
