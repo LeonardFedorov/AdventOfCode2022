@@ -18,10 +18,10 @@ let main projectDir =
         Array.map (fun elf -> Array.sum elf) sourceData //Calculate each elf's total
         |> Array.sortDescending //sort into descending order, as this will be useful later
 
-    //Since the array is sorted, the part 2 answer is just the sum of the first 3 elements
-    let part2Result = Array.sum elfTotals.[0..2]
+    //Since the array is sorted, the part 2 answer is just the sum of the first N elements
+    let part2Result N = Array.sum elfTotals.[0..(N-1)]
 
     //Output
     Console.WriteLine("Part 1: " + elfTotals.[0].ToString())
-    Console.WriteLine("Part 2: " + part2Result.ToString())
+    Console.WriteLine("Part 2: " + (part2Result 3).ToString())
     1
