@@ -26,7 +26,7 @@ A straight forward puzzle, nothing much to say really.
 <details>
 	<summary>Day 2</summary>
 
-Not attempted yet.
+Not too difficult in principle, but I ended up going down a path of explicitly pattern matching all cases. I feel like there must be a more elegant way of doing this, but this approach is pretty transparant about how it works so still reasonably happy with it.
 
 </details>
 
