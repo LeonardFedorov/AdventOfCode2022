@@ -33,7 +33,7 @@ Not too difficult in principle, but I initially ended up going down a path of ex
 <details>
 	<summary>Day 3</summary>
 
-Not attempted yet.
+A fairly straight forward string searching exercise. After completing part 2, I refactored part 1 to use the same searching code as part 2 to tidy up the solution a bit. Some char value hacking which is always entertaining to read.
 
 </details>
 
