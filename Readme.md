@@ -26,7 +26,7 @@ A straight forward puzzle, nothing much to say really.
 <details>
 	<summary>Day 2</summary>
 
-Not too difficult in principle, but I ended up going down a path of explicitly pattern matching all cases. I feel like there must be a more elegant way of doing this, but this approach is pretty transparant about how it works so still reasonably happy with it.
+Not too difficult in principle, but I initially ended up going down a path of explicitly pattern matching all cases which can be seen in the first commit of day 2. However, I subsequently realised a more subtle way of expressing the win relationsihps by setting the items up as an enum and then using an array with the indicies aligned to the enum so that offsetting left or right in the array would be able to determine the result of the game. 
 
 </details>
 

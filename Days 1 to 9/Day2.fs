@@ -4,47 +4,45 @@ module Day2
 open System
 open System.IO
 
+//Items are valued at their intrinsic score
+type items =
+    | Rock = 1
+    | Scissors = 3
+    | Paper = 2
+
 //Entry point
-let main projectDir =
+let main projectDir =      
 
     //Functions common to the both parts
+
+    //This array is set up so that each item is placed at the index of its score, and that each item beats
+    //the item that preceeds it and loses to the item that follows it
+    let itemSequence = [|items.Scissors; items.Rock; items.Paper; items.Scissors; items.Rock|]
+
     let standardise item =
         match item with
-            | 'A'| 'X' -> "Rock"
-            | 'B'| 'Y' -> "Paper"
-            | 'C'| 'Z' -> "Scissors"
+            | 'A'| 'X' -> items.Rock
+            | 'B'| 'Y' -> items.Paper
+            | 'C'| 'Z' -> items.Scissors
             | _ -> failwith "Unknown input object"
-
-    let itemPoints item =
-        match item with
-            | "Rock" -> 1
-            | "Paper" -> 2
-            | "Scissors" -> 3
-            | _ -> failwith "Unknown item being scored"
 
     //Returns which item wins - 1 for item1 and 2 for item2. Returns 0 if a draw
     let winningItem item1 item2 =
         if item1 = item2 then 0
-        else match (item1, item2) with
-                | ("Rock", "Scissors") -> 1
-                | ("Rock", "Paper") -> 2
-                | ("Paper", "Rock") -> 1
-                | ("Paper", "Scissors") -> 2
-                | ("Scissors", "Paper") -> 1
-                | ("Scissors", "Rock") -> 2
-                | _ -> failwith "Unknown matchup"
+        elif itemSequence.[int item1 - 1] = item2 then 1
+        else 2
 
     let roundResult player1 player2 =
-        let itemScore = itemPoints player2
         let resultScore = match winningItem player1 player2 with
                             | 0 -> 3
                             | 1 -> 0
                             | 2 -> 6
                             | _ -> failwith "Unexpected result from winningItem"
 
-        itemScore + resultScore
+        int player2 + resultScore
 
-    //Read data in as store as a tuple
+    //Read data in as store as a tuple. Convert player 1's value straight to items, but leave player 2's as it has different
+    //meanings in parts 1 and 2.
     let sourceData =
         let fileStream = new StreamReader(projectDir + "\\Day2Input.txt")
         fileStream.ReadToEnd().Split([|"\r\n"|], StringSplitOptions.None)
@@ -60,19 +58,9 @@ let main projectDir =
 
     //Part 2
 
-    let getBetterItem item =
-        match item with
-            | "Rock" -> "Paper"
-            | "Paper" -> "Scissors"
-            | "Scissors" -> "Rock"
-            | _ -> failwith "Unknown item"
+    let getBetterItem item = itemSequence.[int item + 1]
 
-    let getWorseItem item = 
-        match item with
-            | "Rock" -> "Scissors"
-            | "Paper" -> "Rock"
-            | "Scissors" -> "Paper"
-            | _ -> failwith "Unknown item"
+    let getWorseItem item = itemSequence.[int item - 1]
 
     let getMove player1Item player2Move =
         match player2Move with
