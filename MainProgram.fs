@@ -3,7 +3,9 @@
 [<EntryPoint>]
 let main argv =
     
-    let rec mainiter projectDir codeSum =
+    let fileDir = System.IO.Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + "\\InputData"
+
+    let rec mainiter codeSum =
     
         Console.WriteLine("\nSelect day to run calculation for:")
         let selection = Console.ReadLine()
@@ -15,31 +17,31 @@ let main argv =
         timer.Start()
 
         let code = match selection with
-                    | "1"  -> Day1.main projectDir
-                    | "2"  -> Day2.main projectDir
-                    | "3"  -> Day3.main projectDir
-                    | "4"  -> Day4.main projectDir
-                    | "5"  -> Day5.main projectDir
-                    | "6"  -> Day6.main projectDir
-                    | "7"  -> Day7.main projectDir
-                    | "8"  -> Day8.main projectDir
-                    | "9"  -> Day9.main projectDir
-                    | "10" -> Day10.main projectDir
-                    | "11" -> Day11.main projectDir
-                    | "12" -> Day12.main projectDir
-                    | "13" -> Day13.main projectDir
-                    | "14" -> Day14.main projectDir
-                    | "15" -> Day15.main projectDir
-                    | "16" -> Day16.main projectDir
-                    | "17" -> Day17.main projectDir
-                    | "18" -> Day18.main projectDir
-                    | "19" -> Day19.main projectDir
-                    | "20" -> Day20.main projectDir
-                    | "21" -> Day21.main projectDir
-                    | "22" -> Day22.main projectDir
-                    | "23" -> Day23.main projectDir
-                    | "24" -> Day24.main projectDir
-                    | "25" -> Day25.main projectDir
+                    | "1"  -> Day1.main fileDir
+                    | "2"  -> Day2.main fileDir
+                    | "3"  -> Day3.main fileDir
+                    | "4"  -> Day4.main fileDir
+                    | "5"  -> Day5.main fileDir
+                    | "6"  -> Day6.main fileDir
+                    | "7"  -> Day7.main fileDir
+                    | "8"  -> Day8.main fileDir
+                    | "9"  -> Day9.main fileDir
+                    | "10" -> Day10.main fileDir
+                    | "11" -> Day11.main fileDir
+                    | "12" -> Day12.main fileDir
+                    | "13" -> Day13.main fileDir
+                    | "14" -> Day14.main fileDir
+                    | "15" -> Day15.main fileDir
+                    | "16" -> Day16.main fileDir
+                    | "17" -> Day17.main fileDir
+                    | "18" -> Day18.main fileDir
+                    | "19" -> Day19.main fileDir
+                    | "20" -> Day20.main fileDir
+                    | "21" -> Day21.main fileDir
+                    | "22" -> Day22.main fileDir
+                    | "23" -> Day23.main fileDir
+                    | "24" -> Day24.main fileDir
+                    | "25" -> Day25.main fileDir
                     |  _   -> Console.WriteLine("Unrecognised input code.")
                               -1
     
@@ -50,13 +52,11 @@ let main argv =
         Console.WriteLine("\nCompute another day? y/n")
         let response = Console.ReadLine()
         match response with
-            | "y" | "Y" -> mainiter projectDir (codeSum + code)
+            | "y" | "Y" -> mainiter (codeSum + code)
             | _ -> codeSum + code
-
-    let projectDir = System.IO.Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + "\\InputData"
-
+ 
     Console.WriteLine("#####################")
     Console.WriteLine("#Advent Of Code 2022#")
     Console.WriteLine("#####################")
 
-    mainiter projectDir 0
+    mainiter  0
