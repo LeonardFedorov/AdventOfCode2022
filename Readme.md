@@ -40,7 +40,7 @@ A fairly straight forward string searching exercise. After completing part 2, I 
 <details>
 	<summary>Day 4</summary>
 
-Not attempted yet.
+ Very easy day, just hard typed the logical comparisons so not at all scalable to rows with more than 2 ranges. Use of array argument pattern matching makes the expression very concise though - albeit at the expense of generating a compiler warning due to the potential for other patterns (which obviously don't arise because the input data is tightly controlled)
 
 </details>
 
