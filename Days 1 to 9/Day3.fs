@@ -32,32 +32,26 @@ let main projectDir =
         |> Array.map (fun word -> word.ToCharArray())
 
     //Part 1
+    let part1 = 
+        let splitInHalf (backpack: char[]) =
+            let size = backpack.Length
+            if size % 2 <> 0 then failwith "Odd backpack found"
+            else [|backpack.[0..size/2-1]; backpack.[size/2..]|]
 
-    let splitInHalf (backpack: char[]) =
-        let size = backpack.Length
-        if size % 2 <> 0 then failwith "Odd backpack found"
-        else [|backpack.[0..size/2-1]; backpack.[size/2..]|]
-
-    let part1Data = Array.map (fun backpack -> splitInHalf backpack) sourceData
-
-    let part1Result = 
-        Array.map (fun pair -> priorityScore (findCommonChar pair)) part1Data
+        Array.map (fun backpack -> splitInHalf backpack) sourceData
+        |> Array.map (fun pair -> priorityScore (findCommonChar pair))
         |> Array.sum
 
     //Part 2
-
-    let groupSize = 3
-
-    let part2Data =
+    let part2 =
+        let groupSize = 3
         if sourceData.Length % groupSize <> 0 then failwith "Invalid party size"
         Array.init (sourceData.Length/groupSize) (fun i -> sourceData.[groupSize * i.. groupSize * i + groupSize - 1])
-
-    let part2Result = 
-        Array.map (fun group -> priorityScore (findCommonChar group)) part2Data
+        |> Array.map (fun group -> priorityScore (findCommonChar group))
         |> Array.sum
 
     //Output
     
-    Console.WriteLine("Part 1: " + part1Result.ToString())
-    Console.WriteLine("Part 2: " + part2Result.ToString())
+    Console.WriteLine("Part 1: " + part1.ToString())
+    Console.WriteLine("Part 2: " + part2.ToString())
     3
