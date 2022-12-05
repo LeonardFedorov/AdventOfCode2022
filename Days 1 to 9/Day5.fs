@@ -19,13 +19,13 @@ let main projectDir =
         |> Array.map (fun valueList -> Array.map (fun value -> Int32.Parse(value)) valueList) 
         
     //Build the initial box state
-    let initialBoxList = 
+    let initialBoxList (source: string []) = 
         let stackCount = 9
         let mutable boxBuild = Array.init stackCount (fun i -> List.empty<char>)
         //Set up the initial state of the boxList
-        for i in sourceData.[0].Length - 2 .. -1 .. 0 do
+        for i in source.Length - 2 .. -1 .. 0 do
             for j in 1 .. stackCount do
-                match sourceData.[0].[i].[4*j - 3] with
+                match source.[i].[4*j - 3] with
                     | ' ' -> ()
                     | c -> boxBuild.[j-1] <- c :: boxBuild.[j-1]
         boxBuild
@@ -42,13 +42,12 @@ let main projectDir =
         |> String
 
     let part1 =
-        let mutable boxState = initialBoxList
+        let mutable boxState = initialBoxList sourceData.[0]
         Array.iter (fun [|count; source; destination|] -> moveBoxes boxState count 1 (source-1) (destination-1)) moveList
         readTopBoxes boxState
-        "lol"
 
     let part2 =
-        let mutable boxState = initialBoxList
+        let mutable boxState = initialBoxList sourceData.[0]
         Array.iter (fun [|count; source; destination|] -> moveBoxes boxState count count (source-1) (destination-1)) moveList
         readTopBoxes boxState
 

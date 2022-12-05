@@ -47,7 +47,7 @@ A fairly straight forward string searching exercise. After completing part 2, I 
 <details>
 	<summary>Day 5</summary>
 
-Not attempted yet.
+An interesting problem to parse the data and find a suitable structure for manipulating it. I settled on using an array of lists (with the top of each pile being the head of the list), as the list structure makes it fairly easy to "move" the items around between the lists. Initially, there was an issue with the initial box state being mutated by the part 1 process, leading to the part 2 process acting on the post-part 1 state instead of the initial state. Changing the initial box state to a 1 variable function rather than being a value fixed by, I assume, forcing the evaluation of it each time it is called. There is probably a cleaner way of handling this (evaluate the initial state once from the input and then just create copies of it?) but I didn't spend the time to find it as I try to avoid mutable constructs anyway.
 
 </details>
 

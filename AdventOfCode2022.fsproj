@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include=".editorconfig" />
     <None Include="ScratchPad.fsx" />
     <Compile Include="Day Template.fs" />
     <Content Include="InputData\Day1Input.txt" />
