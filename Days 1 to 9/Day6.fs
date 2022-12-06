@@ -10,23 +10,16 @@ let main projectDir =
     //Common
     let sourceData =
         let fileStream = new StreamReader(projectDir + "\\Day6Input.txt")
-        fileStream.ReadToEnd().Split([|"\r\n"|], StringSplitOptions.None)
+        fileStream.ReadToEnd().ToCharArray()
 
+    let allDistinct (array: char []) = 
+        (Array.distinct array).Length = array.Length
 
-    //Part 1
-
-
-
-
-
-
-
-    //Part 2
-
-
+    let findFirstMarker markerLength =
+        [|markerLength .. sourceData.Length|] //Input data is 1 indexed, so will use that here and adjust when we read the string
+        |> Array.find (fun i -> allDistinct sourceData.[i - markerLength .. i - 1])  
 
     //Output
-
-    Console.WriteLine("Part 1: Not Implemented."  )
-    Console.WriteLine("Part 2: Not Implemented."  )
+    Console.WriteLine("Part 1: " + (findFirstMarker 4).ToString() )
+    Console.WriteLine("Part 2: " + (findFirstMarker 14).ToString()  )
     6

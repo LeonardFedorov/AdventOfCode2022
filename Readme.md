@@ -54,7 +54,7 @@ An interesting problem to parse the data and find a suitable structure for manip
 <details>
 	<summary>Day 6</summary>
 
-Not attempted yet.
+The only trick from a functional point of view was figuring out how to perform the iteration cleanly. I settled on generating the array of candidate indicies (i.e. markerlength up to string length) and then performing Array.find over that to locate the first one. Since I had parameterised marker length in the course of the part 1 solution, part 2 was solved instantly.
 
 </details>
 
