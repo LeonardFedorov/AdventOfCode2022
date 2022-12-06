@@ -15,11 +15,14 @@ let main projectDir =
     let allDistinct (array: char []) = 
         (Array.distinct array).Length = array.Length
 
-    let findFirstMarker markerLength =
-        [|markerLength .. sourceData.Length|] //Input data is 1 indexed, so will use that here and adjust when we read the string
-        |> Array.find (fun i -> allDistinct sourceData.[i - markerLength .. i - 1])  
+    let findFirstMarker start markerLength =
+        //Input data is 1 indexed, so will use that here and adjust when we read the string
+        Array.find (fun i -> allDistinct sourceData.[i - markerLength .. i - 1]) [|start + markerLength .. sourceData.Length|] 
 
     //Output
-    Console.WriteLine("Part 1: " + (findFirstMarker 4).ToString() )
-    Console.WriteLine("Part 2: " + (findFirstMarker 14).ToString()  )
+    let part1 = findFirstMarker 0 4
+    let part2 = findFirstMarker (part1 - 4) 14
+
+    Console.WriteLine("Part 1: " + part1.ToString() )
+    Console.WriteLine("Part 2: " + part2.ToString()  )
     6
