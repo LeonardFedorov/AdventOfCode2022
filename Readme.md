@@ -68,7 +68,7 @@ Not attempted yet.
 <details>
 	<summary>Day 8</summary>
 
-Not attempted yet.
+Not challenging conceptually, though was a bit odd that parts 1 and 2 were basically unrelated. Part 1 solved through an efficient (thoughly wholly imperative construction), whereas part 2 was ultimately more functional in nature. Using a 2D array proved very powerful for the slicing functionality which made the computation quite easy to express.
 
 </details>
 
