@@ -75,7 +75,7 @@ Not challenging conceptually, though was a bit odd that parts 1 and 2 were basic
 <details>
 	<summary>Day 9</summary>
 
-Not attempted yet.
+Part 2 required a significant refactor of the data structure, but all the core logic worked perfectly after the transition. Although the inner construction uses a mutable list to build up the rope position, the overall construct is a purely functional recursive loop construct.
 
 </details>
 

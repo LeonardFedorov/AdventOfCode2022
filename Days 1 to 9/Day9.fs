@@ -21,49 +21,56 @@ let main projectDir =
         let customAbs (value: int) = Math.Abs(value)
         let customSign (value: int) = Math.Sign(value)
 
-        let rec processInstruction (hx, hy) (tx, ty) pathSoFar direction count =
+        let rec processInstruction ropePos pathSoFar direction count =
             
             if count = 0 then
-                ((hx, hy), (tx, ty), pathSoFar)
-            else
+                (ropePos, pathSoFar)
+            else            
 
-                let (hx2, hy2) = match direction with
-                                    | 'U' -> (hx, hy + 1)
-                                    | 'D' -> (hx, hy - 1)
-                                    | 'L' -> (hx - 1, hy)
-                                    | 'R' -> (hx + 1, hy)
-                                    | _ -> failwith "Unexpected direction"
+            let updatedHead = 
+                let (hx, hy) = List.head ropePos
+                match direction with
+                    | 'U' -> (hx, hy + 1)
+                    | 'D' -> (hx, hy - 1)
+                    | 'L' -> (hx - 1, hy)
+                    | 'R' -> (hx + 1, hy)
+                    | _ -> failwith "Unexpected direction"
 
-                let moveTail = (customAbs(hx2 - tx) > ropeLength) || (customAbs(hy2 - ty) > ropeLength)
+            let updatePoint (hx, hy) (tx, ty) =
+                let moveTail = (customAbs(hx - tx) > 1) || (customAbs(hy - ty) > 1)
+                let (txd, tyd) = if moveTail then (customSign(hx - tx), customSign(hy - ty)) else (0,0)
+                (tx + txd , ty + tyd)
 
-                let (txd, tyd) = if not moveTail then (0,0)
-                                 else 
-                                     (customSign(hx2 - tx), customSign(hy2 - ty))
+            let mutable newRope = [updatedHead] 
 
-                let newTail = (tx + txd , ty + tyd)                            
-                let newPath = if moveTail then
-                                  newTail :: pathSoFar
-                              else pathSoFar
+            List.iter (fun point -> newRope <- (updatePoint (List.head newRope) point) :: newRope) (List.tail ropePos)
 
-                processInstruction (hx2, hy2) newTail newPath direction (count - 1)
+            let moveTail = List.head newRope <> List.head pathSoFar
+
+            let newPath = if moveTail then
+                                List.head newRope :: pathSoFar
+                            else pathSoFar
+
+            processInstruction (List.rev newRope) newPath direction (count - 1)
         
-        let rec processPathIter instructions pathSoFar headPos tailPos =
+        let rec processPathIter instructions pathSoFar ropePos =
             
             if List.isEmpty instructions then
                 pathSoFar
             else
                 let (direction, count) = List.head instructions
-                let (newHead, newTail, newPath) = processInstruction headPos tailPos pathSoFar direction count
-                processPathIter (List.tail instructions) newPath newHead newTail
+                let (newRope, newPath) = processInstruction ropePos pathSoFar direction count
+                processPathIter (List.tail instructions) newPath newRope
 
-        processPathIter sourceData [(0,0)] (0,0) (0,0)
+        let initialRope = List.init ropeLength (fun i -> (0,0))
+        processPathIter sourceData [(0,0)] initialRope
 
     //Output
     let p1Result = findTailPath 2
                    |> List.distinct
                    |> List.length
 
-    let p2Result = findTailPath 9
+    let p2Result = findTailPath 10
                    |> List.distinct
                    |> List.length
 
