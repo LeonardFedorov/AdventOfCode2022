@@ -82,7 +82,7 @@ Not attempted yet.
 <details>
 	<summary>Day 10</summary>
 
-Not attempted yet.
+Part 2 took some effort to get the index aligment correct (it would also have helped if I had read the sprite processing rules precisely correctly first time as well!). Again, part 1 was achieved using a mutable array which allowed for easily handling the variable length steps.
 
 </details>
 
