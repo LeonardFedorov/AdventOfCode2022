@@ -79,7 +79,7 @@ let main projectDir =
             setupFile splitString
             
 
-    let directoryParse = 
+    //let directoryParse = 
 
     //Part 2
 
