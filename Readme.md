@@ -138,7 +138,7 @@ Not attempted yet.
 <details>
 	<summary>Day 18</summary>
 
-Not attempted yet.
+An interesting one, with a pleasing re-use of the part 1 code to solve part 2. Part 1 was adding the points to the shape one by one, and observing that the surface area of the shape increased by 6 - 2 * number of cubes adjacent to the new one. Part 2 was then done by creating a 3 dimensional array representing the bounding box of the shape from part 1, and then doing a fill from the bottom left corner to identify the outside points (and therefore the inside points as the complement). The part 1 code was then used to work out the surface area of these interior points so that the solution was the part 1 answer minus the surface area of the interior holes.
 
 </details>
 
