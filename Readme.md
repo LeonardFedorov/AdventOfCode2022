@@ -152,8 +152,8 @@ Not attempted yet.
 <details>
 	<summary>Day 20</summary>
 
-Not attempted yet.
-
+Took a while to fully get the hang of this one, as the wrap-around impact had a few subtleties. The key realisation is that because the object is being moved to between two other objects (including the two it is between presently), there are only Array Length minus 1 possible places (another way of seeing this is to consider that being moved into the first position or the last position of the array is identical as far as the order goes if everything else is done right) to consider. Doing the offset arithmetic mod Array Length minus 1 simplified the logic and removed the need for kinda janky special case arithmetic.
+Part 2 offered nothing special - just jack up the numbers to check the reader was aware of 64 bit variables and then iterate the process several times.
 </details>
 
 <details>
