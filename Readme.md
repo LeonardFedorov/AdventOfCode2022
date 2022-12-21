@@ -61,7 +61,7 @@ The only trick from a functional point of view was figuring out how to perform t
 <details>
 	<summary>Day 7</summary>
 
-Not attempted yet.
+Ended up taking ages to do this as I got sidetracked on the day and things just took over. Life was much easier after I threw away the recursive data structure idea and just built it as a straight array of strings - sometimes simple is just better! The computation of all the directory sizes could probably be made much more efficient through a function memorisation or deliberate sequencing, but the runtime was instant enough it didn't seem worth the bother to attempt to optimise.
 
 </details>
 
