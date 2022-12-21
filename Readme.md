@@ -159,7 +159,7 @@ Part 2 offered nothing special - just jack up the numbers to check the reader wa
 <details>
 	<summary>Day 21</summary>
 
-Not attempted yet.
+Part 1 was fairly straight forward and didn't pose much challenge, but part 2 proved trickier. The concept of building the calculation stack from the humn point up to the root was fairly easy to implement, but defining the monkey as a discrinated union made the code very syntactically cumbersome. A different way of representing the monkeys would probably have helped here. Another thing was I had stored the monkey's function inside them, but then couldn't see a way to match against it in part 2 so I hastily tacked on the operator symbol as an extra parameter. Overall, not massively happy with how this turned out, but at least it works.
 
 </details>
 
