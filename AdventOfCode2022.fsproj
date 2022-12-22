@@ -7,8 +7,7 @@
 
   <ItemGroup>
     <None Include=".editorconfig" />
-    <None Include="ScratchPad.fsx" />
-    <Compile Include="Day Template.fs" />
+    <Compile Include="Utilities.fs" />
     <Content Include="InputData\Day1Input.txt" />
     <Content Include="InputData\Day2Input.txt" />
     <Content Include="InputData\Day3Input.txt" />
@@ -33,6 +32,7 @@
     <Content Include="InputData\Day20InputTest.txt" />
     <Content Include="InputData\Day21Input.txt" />
     <Content Include="InputData\Day22Input.txt" />
+    <Content Include="InputData\Day22InputTest.txt" />
     <Content Include="InputData\Day23Input.txt" />
     <Content Include="InputData\Day24Input.txt" />
     <Content Include="InputData\Day25Input.txt" />
@@ -61,6 +61,8 @@
     <Compile Include="Days 20 to 25\Day23.fs" />
     <Compile Include="Days 20 to 25\Day24.fs" />
     <Compile Include="Days 20 to 25\Day25.fs" />
+    <Compile Include="Day Template.fs" />
+    <None Include="ScratchPad.fsx" />
     <Compile Include="MainProgram.fs" />
     <None Include="Readme.md" />
   </ItemGroup>

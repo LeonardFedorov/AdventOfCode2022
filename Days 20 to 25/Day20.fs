@@ -15,17 +15,12 @@ let main projectDir =
 
     let arrayLength = sourceData.Length    
     
-    //F#'s native mod returns a residue with the same sign as the dividend, however for this we want to use the minimal non-negative CSR
-    let realMod a b =
-        let rawMod = a % b
-        rawMod + if rawMod < 0L then b else 0L
-
     //Move the item at index in the workingArray according to its value
     let rec moveItem index (workingArray: (int64 * int)[]) =
         let currentItem = workingArray.[index]
-        let offset = int (realMod (fst currentItem) (int64 (arrayLength - 1)))
+        let offset = int (realMod64 (fst currentItem) (int64 (arrayLength - 1)))
         if offset <> 0 then
-            let newPlace = int (realMod (int64 (index + offset)) (int64 (arrayLength - 1)))
+            let newPlace = int (realMod64 (int64 (index + offset)) (int64 (arrayLength - 1)))
             
             //Shuffle along all the items in between where we are moving the item from and to
             if newPlace <> index then

@@ -145,7 +145,12 @@ An interesting one, with a pleasing re-use of the part 1 code to solve part 2. P
 <details>
 	<summary>Day 19</summary>
 
-Not attempted yet.
+Assumptions:
+	Never pass on building geo robot if available
+	Never build more robots producing a given resource than cost of any given robot in that resource (since only one robot can be built per turn)
+	If a robot was available to be built, but passed on, don't consider building it again until some other robot is built.
+	If all "available" (being all robots whose source materials are all currently in production) robots can be afforded, something should be built.
+	Any bot that is going to be built ought to be built as soon as resources are available, unless something else is being built first (i.e. no lollygagging)
 
 </details>
 
