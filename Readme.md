@@ -192,6 +192,6 @@ Not attempted yet.
 <details>
 	<summary>Day 25</summary>
 
-Not attempted yet.
+A fairly simple puzzle to close out with, although it carries the interesting implication that it's possible to define a viable number representation system using any CSR as long as it contains zero.
 
 </details>
